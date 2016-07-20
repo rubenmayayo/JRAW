@@ -74,7 +74,7 @@ public final class OkHttpAdapter implements HttpAdapter<OkHttpClient> {
         Response response = perRequestClient.newCall(builder.build()).execute();
 
         return new RestResponse(request,
-                response.body().source().inputStream(),
+                response.body().string(),
                 response.headers(),
                 response.code(),
                 response.message(),

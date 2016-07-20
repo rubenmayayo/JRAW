@@ -41,7 +41,7 @@ public class RestResponse {
      * Instantiates a new RedditResponse
      */
     @SuppressWarnings("ThrowableInstanceNeverThrown")
-    RestResponse(HttpRequest origin, InputStream body, Headers headers, int statusCode, String statusMessage, String protocol) {
+    RestResponse(HttpRequest origin, String body, Headers headers, int statusCode, String statusMessage, String protocol) {
         this.origin = origin;
         this.headers = headers;
         this.statusCode = statusCode;
@@ -53,8 +53,9 @@ public class RestResponse {
             if (contentType == null)
                 throw new IllegalStateException("No Content-Type header was found");
             this.type = JrawUtils.parseMediaType(contentType);
-            String charset = type.charset().or(Charsets.UTF_8).name();
-            this.raw = readContent(body, charset);
+//            String charset = type.charset().or(Charsets.UTF_8).name();
+//            this.raw = readContent(body, charset);
+            this.raw = body;
 
             // Assume there aren't any exceptions
             ApiException error = null;
@@ -88,15 +89,15 @@ public class RestResponse {
         }
     }
 
-    private String readContent(InputStream entity, String charset) {
-        try {
-            Scanner s = new Scanner(entity, charset).useDelimiter("\\A");
-            return s.hasNext() ? s.next() : "";
-        } catch (Exception e) {
-            JrawUtils.logger().error("Could not read the body of the given response");
-            throw e;
-        }
-    }
+//    private String readContent(InputStream entity, String charset) {
+//        try {
+//            Scanner s = new Scanner(entity, charset).useDelimiter("\\A");
+//            return s.hasNext() ? s.next() : "";
+//        } catch (Exception e) {
+//            JrawUtils.logger().error("Could not read the body of the given response");
+//            throw e;
+//        }
+//    }
 
     /** Convenience method to call {@link ModelManager#create(JsonNode, Class)} */
     @SuppressWarnings("unchecked")
