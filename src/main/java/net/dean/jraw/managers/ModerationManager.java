@@ -1,11 +1,13 @@
 package net.dean.jraw.managers;
 
-import net.dean.jraw.*;
+import net.dean.jraw.ApiException;
+import net.dean.jraw.EndpointImplementation;
+import net.dean.jraw.Endpoints;
+import net.dean.jraw.RedditClient;
 import net.dean.jraw.http.AuthenticationMethod;
 import net.dean.jraw.http.NetworkException;
 import net.dean.jraw.http.RestResponse;
 import net.dean.jraw.models.FlairTemplate;
-import net.dean.jraw.models.PublicContribution;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.models.Thing;
 import net.dean.jraw.models.attr.Votable;
@@ -47,15 +49,15 @@ public class ModerationManager extends AbstractManager {
     }
 
     /**
-     * Spoiler or unspoilers a submission.
+     * Sets whether or not this submission should be marked as spoiler
      *
-     * @param s The submission to spoiler or unspoiler
-     * @param spoiler Whether or not to spoiler the submission
-     * @throws NetworkException If the request was not successful
-     * @throws ApiException If the API returned an error
+     * @param s       The submission to modify
+     * @param spoiler Whether or not this submission is spoiler
+     * @throws net.dean.jraw.http.NetworkException If the request was not successful
+     * @throws net.dean.jraw.ApiException          If the API returned an error
      */
     @EndpointImplementation({Endpoints.SPOILER, Endpoints.UNSPOILER})
-    private void setSpoiler(PublicContribution s, boolean spoiler) throws NetworkException, ApiException {
+    public void setSpoiler(Submission s, boolean spoiler) throws NetworkException, ApiException {
         // Send it to "/api/spoiler" if spoiler == true, "/api/unspoiler" if spoiler == false
         genericPost(reddit.request()
                 .endpoint(spoiler ? Endpoints.SPOILER : Endpoints.UNSPOILER)
