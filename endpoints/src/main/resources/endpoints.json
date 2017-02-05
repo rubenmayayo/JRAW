@@ -94,9 +94,11 @@
         "POST /api/set_contest_mode",
         "POST /api/set_subreddit_sticky",
         "POST /api/set_suggested_sort",
+        "POST /api/spoiler",
         "POST /api/unignore_reports",
         "POST /api/unlock",
-        "POST /api/unmarknsfw"
+        "POST /api/unmarknsfw",
+        "POST /api/unspoiler"
     ],
     "modself": [
         "POST /api/accept_moderator_invite",

@@ -164,10 +164,14 @@ public enum Endpoints {
     SET_CONTEST_MODE("POST /api/set_contest_mode", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_set_suggested_sort">{@code POST /api/set_suggested_sort}</a>" included in the "modposts" scope */
     SET_SUGGESTED_SORT("POST /api/set_suggested_sort", "modposts"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_spoiler">{@code POST /api/spoiler}</a>" included in the "modposts" scope */
+    SPOILER("POST /api/spoiler", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_unignore_reports">{@code POST /api/unignore_reports}</a>" included in the "modposts" scope */
     UNIGNORE_REPORTS("POST /api/unignore_reports", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_unlock">{@code POST /api/unlock}</a>" included in the "modposts" scope */
     UNLOCK("POST /api/unlock", "modposts"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_unspoiler">{@code POST /api/unspoiler}</a>" included in the "modposts" scope */
+    UNSPOILER("POST /api/unspoiler", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_marknsfw">{@code POST /api/marknsfw}</a>" included in the "modposts" scope */
     MARKNSFW("POST /api/marknsfw", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_set_subreddit_sticky">{@code POST /api/set_subreddit_sticky}</a>" included in the "modposts" scope */
