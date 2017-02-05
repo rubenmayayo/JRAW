@@ -158,44 +158,6 @@ public class AccountManager extends AbstractManager {
     }
 
     /**
-     * Mark a given submission as spoiler
-     * @param s The submission to mark as spoiler
-     * @throws NetworkException If the request was not successful
-     * @throws ApiException If the API returned an error
-     */
-    public void spoiler(PublicContribution s) throws NetworkException, ApiException {
-        setSpoiler(s, true);
-    }
-
-    /**
-     * Remove spoiler from a given submission
-     * @param s The submission to unspoiler
-     * @throws NetworkException If the request was not successful
-     * @throws ApiException If the API returned an error
-     */
-    public void unspoiler(PublicContribution s) throws NetworkException, ApiException {
-        setSpoiler(s, false);
-    }
-
-    /**
-     * Spoiler or unspoilers a submission.
-     *
-     * @param s The submission to spoiler or unspoiler
-     * @param spoiler Whether or not to spoiler the submission
-     * @throws NetworkException If the request was not successful
-     * @throws ApiException If the API returned an error
-     */
-    @EndpointImplementation({Endpoints.SPOILER, Endpoints.UNSPOILER})
-    private void setSpoiler(PublicContribution s, boolean spoiler) throws NetworkException, ApiException {
-        // Send it to "/api/spoiler" if spoiler == true, "/api/unspoiler" if spoiler == false
-        genericPost(reddit.request()
-                .endpoint(spoiler ? Endpoints.SPOILER : Endpoints.UNSPOILER)
-                .post(JrawUtils.mapOf(
-                        "id", s.getFullName()
-                )).build());
-    }
-
-    /**
      * Sets whether or not replies to this submission should be sent to your inbox. You must own this Submission.
      *
      * @param s The submission to modify
