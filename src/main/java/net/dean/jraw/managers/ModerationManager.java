@@ -30,6 +30,96 @@ public class ModerationManager extends AbstractManager {
     }
 
     /**
+     * Approve a thing in a subreddit you moderate
+     * @param s The thing to approve
+     * @throws NetworkException
+     * @throws ApiException
+     */
+    @EndpointImplementation(Endpoints.APPROVE)
+    public void approve(Thing s) throws NetworkException, ApiException {
+        genericPost(reddit.request()
+                .endpoint(Endpoints.APPROVE)
+                .post(JrawUtils.mapOf(
+                        "api_type", "json",
+                        "id", s.getFullName()
+                )).build());
+    }
+
+    /**
+     * Remove a thing in a subreddit you moderate
+     * @param s The thing to remove
+     * @throws NetworkException
+     * @throws ApiException
+     */
+    @EndpointImplementation(Endpoints.REMOVE)
+    public void remove(Thing s, boolean spam) throws NetworkException, ApiException {
+        genericPost(reddit.request()
+                .endpoint(Endpoints.REMOVE)
+                .post(JrawUtils.mapOf(
+                        "api_type", "json",
+                        "id", s.getFullName(),
+                        "spam", spam
+
+                )).build());
+    }
+
+    /**
+     * Sets whether or not this submission should be marked as locked
+     *
+     * @param s       The submission to modify
+     * @param lock Whether or not this submission is locked
+     * @throws net.dean.jraw.http.NetworkException If the request was not successful
+     * @throws net.dean.jraw.ApiException          If the API returned an error
+     */
+    @EndpointImplementation({Endpoints.LOCK, Endpoints.UNLOCK})
+    public void setLocked(Submission s, boolean lock) throws NetworkException, ApiException {
+        // Send it to "/api/lock" if lock == true, "/api/unlock" if lock == false
+        genericPost(reddit.request()
+                .endpoint(lock ? Endpoints.LOCK : Endpoints.UNLOCK)
+                .post(JrawUtils.mapOf(
+                        "id", s.getFullName()
+                )).build());
+    }
+
+    /**
+     * Sets whether or not ignore future reports to this submission
+     *
+     * @param s       The submission
+     * @param ignore Whether or not to ignore future reports
+     * @throws net.dean.jraw.http.NetworkException If the request was not successful
+     * @throws net.dean.jraw.ApiException          If the API returned an error
+     */
+    @EndpointImplementation({Endpoints.IGNORE_REPORTS, Endpoints.UNIGNORE_REPORTS})
+    public void setIgnoreReports(Submission s, boolean ignore) throws NetworkException, ApiException {
+        // Send it to "/api/ignore_reports" if ignore == true, "/api/unignore_reports" if ignore == false
+        genericPost(reddit.request()
+                .endpoint(ignore ? Endpoints.IGNORE_REPORTS : Endpoints.UNIGNORE_REPORTS)
+                .post(JrawUtils.mapOf(
+                        "id", s.getFullName()
+                )).build());
+    }
+
+    /**
+     * Set or unset a self post to Contest Mode. You must be a moderator of the subreddit the submission was posted in for
+     * this request to complete successfully.
+     *
+     * @param s      The submission to set as contest. Must be a self post
+     * @param enabled Whether or not to set the submission to contest mode
+     * @throws NetworkException If the request was not successful
+     * @throws ApiException     If the Reddit API returned an error
+     */
+    @EndpointImplementation(Endpoints.SET_CONTEST_MODE)
+    public void setContestMode(Submission s, boolean enabled) throws NetworkException, ApiException {
+        genericPost(reddit.request()
+                .endpoint(Endpoints.SET_CONTEST_MODE)
+                .post(JrawUtils.mapOf(
+                        "api_type", "json",
+                        "id", s.getFullName(),
+                        "state", enabled
+                )).build());
+    }
+
+    /**
      * Sets whether or not this submission should be marked as not safe for work
      *
      * @param s    The submission to modify
