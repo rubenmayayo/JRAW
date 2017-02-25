@@ -483,6 +483,42 @@ public class AccountManager extends AbstractManager {
         }
     }
 
+    /**
+     * Ban user
+     *
+     * @param name   User to ban
+     * @param subreddit   Subreddit to ban from
+     * @param reason Why user is being banned
+     * @param note Note to mods (optional)
+     * @param message Message to send to user (optional)
+     * @param days Duration of ban in days (optional)
+     * @throws NetworkException If the request was not successful
+     * @throws ApiException     If the API returned an error
+     */
+    @EndpointImplementation(Endpoints.OAUTH_ME_FRIENDS_USERNAME_PUT)
+    public void banUser(String subreddit, String name, String reason, String note, String message, int days) throws NetworkException, ApiException {
+            Map<String, String> args = JrawUtils.mapOf(
+                    "name", name,
+                    "type", "banned",
+                    "ban_reason", reason
+            );
+
+        if (days > 0) {
+            args.put("duration", String.valueOf(days));
+        }
+        if (message != null) {
+            args.put("ban_message", message);
+        }
+        if (note != null) {
+            args.put("note", note);
+        }
+
+        genericPost(reddit.request()
+                .path("/r/" + subreddit + Endpoints.FRIEND.getEndpoint().getUri())
+                .post(args)
+                .build());
+    }
+
     private JsonNode getFlairChoicesRootNode(String subreddit, Submission link) throws NetworkException, ApiException {
         String linkFullname = link != null ? link.getFullName() : null;
         Map<String, String> formArgs = new HashMap<>();

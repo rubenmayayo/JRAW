@@ -1,9 +1,10 @@
 package net.dean.jraw.models;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import net.dean.jraw.models.attr.Created;
 import net.dean.jraw.models.meta.JsonProperty;
 import net.dean.jraw.models.meta.Model;
-import com.fasterxml.jackson.databind.JsonNode;
 
 import java.util.Date;
 
@@ -71,7 +72,7 @@ public final class ModAction extends Thing implements Created {
     /** The name of the author whose post was targeted */
     @JsonProperty
     public String getTargetAuthor() {
-        return data("jraw_test");
+        return data("target_author");
     }
 
     /** The username of the author whose post was targeted */
