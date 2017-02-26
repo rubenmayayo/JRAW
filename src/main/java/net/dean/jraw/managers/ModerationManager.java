@@ -7,6 +7,7 @@ import net.dean.jraw.RedditClient;
 import net.dean.jraw.http.AuthenticationMethod;
 import net.dean.jraw.http.NetworkException;
 import net.dean.jraw.http.RestResponse;
+import net.dean.jraw.models.CommentSort;
 import net.dean.jraw.models.FlairTemplate;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.models.Thing;
@@ -117,6 +118,35 @@ public class ModerationManager extends AbstractManager {
                         "id", s.getFullName(),
                         "state", enabled
                 )).build());
+    }
+
+    /**
+     * Set suggested sort of a post. You must be a moderator of the subreddit the submission was posted in for
+     * this request to complete successfully.
+     *
+     * @param s      The submission to set suggested sort
+     * @param sort The comment sort, leave empty to clear default sort
+     * @throws NetworkException If the request was not successful
+     * @throws ApiException     If the Reddit API returned an error
+     */
+    @EndpointImplementation(Endpoints.SET_SUGGESTED_SORT)
+    public void setSuggestedSort(Submission s, CommentSort sort) throws NetworkException, ApiException {
+        Map<String, String> args = JrawUtils.mapOf(
+                "api_type", "json",
+                "id", s.getFullName()
+        );
+
+        if (sort != null) {
+            args.put("sort", sort.name().toLowerCase());
+        }
+        else { // A sort of an empty string clears the default sort
+            args.put("sort", "");
+        }
+
+        genericPost(reddit.request()
+                .endpoint(Endpoints.SET_SUGGESTED_SORT)
+                .post(args).build());
+
     }
 
     /**
