@@ -1,13 +1,16 @@
 package net.dean.jraw.models;
 
+import net.dean.jraw.models.attr.Created;
 import net.dean.jraw.util.Dimension;
 import net.dean.jraw.models.meta.JsonProperty;
 import net.dean.jraw.models.meta.Model;
 import com.fasterxml.jackson.databind.JsonNode;
 
+import java.util.Date;
+
 /** This class represents a subreddit, such as /r/pics. */
 @Model(kind = Model.Kind.SUBREDDIT)
-public final class Subreddit extends Thing implements Comparable<Subreddit> {
+public final class Subreddit extends Thing implements Comparable<Subreddit>, Created {
 
     /** Instantiates a new Subreddit */
     public Subreddit(JsonNode dataNode) {
@@ -32,6 +35,12 @@ public final class Subreddit extends Thing implements Comparable<Subreddit> {
     @JsonProperty
     public String getSidebar() {
         return data("description");
+    }
+
+    /** Gets the subreddit's description. This appears on the sidebar on the website. */
+    @JsonProperty
+    public String getSidebarHtml() {
+        return data("description_html");
     }
 
     /** Gets the "human readable" name of the subreddit (ex: "pics") */
@@ -79,6 +88,12 @@ public final class Subreddit extends Thing implements Comparable<Subreddit> {
         return data("public_description");
     }
 
+    /** Gets the information that will show when this subreddit appears in a search */
+    @JsonProperty
+    public String getPublicDescriptionHtml() {
+        return data("public_description_html");
+    }
+
     /** Checks if the subreddit's traffic page is publicly accessible */
     @JsonProperty
     public Boolean isTrafficPublic() {
@@ -111,6 +126,18 @@ public final class Subreddit extends Thing implements Comparable<Subreddit> {
     @JsonProperty
     public String getSubmitTextLabel() {
         return data("submit_text_label");
+    }
+
+    /** Gets the subreddit's custom text for the submit screen, if any */
+    @JsonProperty
+    public String getSubmitText() {
+        return data("submit_text");
+    }
+
+    /** Gets the subreddit's custom text for the submit screen, if any */
+    @JsonProperty
+    public String getSubmitTextHtml() {
+        return data("submit_text_html");
     }
 
     /** Gets this subreddit's traffic restriction type */
@@ -160,6 +187,22 @@ public final class Subreddit extends Thing implements Comparable<Subreddit> {
         return data("banner_img", String.class);
     }
 
+    /** Gets the URL to the icon displayed at the top of the subreddit. May be empty if none is available. */
+    @JsonProperty
+    public String getIconImage() {
+        return data("icon_img", String.class);
+    }
+
+    /** Gets the key color */
+    @JsonProperty
+    public String getKeyColor() {
+        return data("key_color", String.class);
+    }
+
+    @Override
+    public Date getCreated() {
+        return _getCreated();
+    }
 
     @Override
     public int compareTo(Subreddit subreddit) {
