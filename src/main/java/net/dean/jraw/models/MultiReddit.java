@@ -44,7 +44,7 @@ public final class MultiReddit extends Thing implements Created {
 
         JsonNode node = data.get("subreddits");
         for (JsonNode subredditNode : node) {
-            subreddits.add(new MultiSubreddit(subredditNode));
+            subreddits.add(new MultiSubreddit(subredditNode.get("data")));
         }
 
         return subreddits;
