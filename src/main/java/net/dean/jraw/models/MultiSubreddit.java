@@ -52,6 +52,24 @@ public final class MultiSubreddit extends RedditObject {
         return data("user_is_contributor", Boolean.class);
     }
 
+    /** Checks if the logged-in user is subscribed to this subreddit */
+    @JsonProperty(nullable = true)
+    public Boolean isUserSubscriber() {
+        return data("user_is_subscriber", Boolean.class);
+    }
+
+    /** Gets the URL to the banner displayed at the top of the subreddit. May be empty if none is available. */
+    @JsonProperty(nullable = true)
+    public String getBannerImage() {
+        return data("banner_img", String.class);
+    }
+
+    /** Gets the amount of users subscribed to this subreddit */
+    @JsonProperty(nullable = true)
+    public Long getSubscriberCount() {
+        return data("subscribers", Long.class);
+    }
+
     @JsonProperty(nullable = true)
     public Dimension getHeaderSize() {
         return _getHeaderSize();
@@ -71,6 +89,6 @@ public final class MultiSubreddit extends RedditObject {
     /** Gets this subreddit's human-readable name (ex: "funny") */
     @JsonProperty
     public String getDisplayName() {
-        return data("name");
+        return data("display_name");
     }
 }
