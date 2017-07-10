@@ -22,6 +22,7 @@ public class SubmissionSearchPaginator extends Paginator<Submission> {
     private String subreddit;
     private String query;
     private SearchSyntax syntax;
+    private String owner;
 
     /**
      * Instantiates a new Paginator
@@ -48,7 +49,12 @@ public class SubmissionSearchPaginator extends Paginator<Submission> {
     protected String getBaseUri() {
         String base = "/search";
         if (subreddit != null) {
-            base = "/r/" + subreddit + base;
+            if (owner != null) { // Is a multireddit
+                base = "/user/" + owner + "/m/" + subreddit + base;
+            }
+            else {
+                base = "/r/" + subreddit + base;
+            }
         }
         return base;
     }
@@ -70,6 +76,12 @@ public class SubmissionSearchPaginator extends Paginator<Submission> {
 
     public void setSubreddit(String subreddit) {
         this.subreddit = subreddit;
+        invalidate();
+    }
+
+    public void setMultireddit(String owner, String multireddit) {
+        this.owner = owner;
+        this.subreddit = multireddit;
         invalidate();
     }
 
