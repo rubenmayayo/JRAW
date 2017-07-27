@@ -89,6 +89,15 @@ public final class Submission extends PublicContribution {
     }
 
     /**
+     * Gets the view count
+     * @return Gets the view count
+     */
+    @JsonProperty
+    public Integer getViewCount() {
+        return data("view_count", Integer.class);
+    }
+
+    /**
      * This link's flair
      * @return This link's flair
      */
