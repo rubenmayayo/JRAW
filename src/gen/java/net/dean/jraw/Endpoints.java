@@ -150,18 +150,22 @@ public enum Endpoints {
     SETPERMISSIONS("POST /api/setpermissions", "modothers"),
 
     ///////// modposts /////////
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_approve">{@code POST /api/approve}</a>" included in the "modposts" scope */
-    APPROVE("POST /api/approve", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_distinguish">{@code POST /api/distinguish}</a>" included in the "modposts" scope */
     DISTINGUISH("POST /api/distinguish", "modposts"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_approve">{@code POST /api/approve}</a>" included in the "modposts" scope */
+    APPROVE("POST /api/approve", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_ignore_reports">{@code POST /api/ignore_reports}</a>" included in the "modposts" scope */
     IGNORE_REPORTS("POST /api/ignore_reports", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_lock">{@code POST /api/lock}</a>" included in the "modposts" scope */
     LOCK("POST /api/lock", "modposts"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_marknsfw">{@code POST /api/marknsfw}</a>" included in the "modposts" scope */
+    MARKNSFW("POST /api/marknsfw", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_remove">{@code POST /api/remove}</a>" included in the "modposts" scope */
     REMOVE("POST /api/remove", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_set_contest_mode">{@code POST /api/set_contest_mode}</a>" included in the "modposts" scope */
     SET_CONTEST_MODE("POST /api/set_contest_mode", "modposts"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_set_subreddit_sticky">{@code POST /api/set_subreddit_sticky}</a>" included in the "modposts" scope */
+    SET_SUBREDDIT_STICKY("POST /api/set_subreddit_sticky", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_set_suggested_sort">{@code POST /api/set_suggested_sort}</a>" included in the "modposts" scope */
     SET_SUGGESTED_SORT("POST /api/set_suggested_sort", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_spoiler">{@code POST /api/spoiler}</a>" included in the "modposts" scope */
@@ -170,14 +174,10 @@ public enum Endpoints {
     UNIGNORE_REPORTS("POST /api/unignore_reports", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_unlock">{@code POST /api/unlock}</a>" included in the "modposts" scope */
     UNLOCK("POST /api/unlock", "modposts"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_unspoiler">{@code POST /api/unspoiler}</a>" included in the "modposts" scope */
-    UNSPOILER("POST /api/unspoiler", "modposts"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_marknsfw">{@code POST /api/marknsfw}</a>" included in the "modposts" scope */
-    MARKNSFW("POST /api/marknsfw", "modposts"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_set_subreddit_sticky">{@code POST /api/set_subreddit_sticky}</a>" included in the "modposts" scope */
-    SET_SUBREDDIT_STICKY("POST /api/set_subreddit_sticky", "modposts"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_unmarknsfw">{@code POST /api/unmarknsfw}</a>" included in the "modposts" scope */
     UNMARKNSFW("POST /api/unmarknsfw", "modposts"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_unspoiler">{@code POST /api/unspoiler}</a>" included in the "modposts" scope */
+    UNSPOILER("POST /api/unspoiler", "modposts"),
 
     ///////// modself /////////
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_accept_moderator_invite">{@code POST /api/accept_moderator_invite}</a>" included in the "modself" scope */
@@ -242,12 +242,28 @@ public enum Endpoints {
     MESSAGE_UNREAD("GET /message/unread", "privatemessages"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_message_%7Bwhere%7D">{@code GET /message/{where}}</a>" included in the "privatemessages" scope */
     MESSAGE_WHERE("GET /message/{where}", "privatemessages"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_notification_all">{@code GET /notification/all}</a>" included in the "privatemessages" scope */
+    NOTIFICATION_ALL("GET /notification/all", "privatemessages"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_notification_comments">{@code GET /notification/comments}</a>" included in the "privatemessages" scope */
+    NOTIFICATION_COMMENTS("GET /notification/comments", "privatemessages"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_notification_mentions">{@code GET /notification/mentions}</a>" included in the "privatemessages" scope */
+    NOTIFICATION_MENTIONS("GET /notification/mentions", "privatemessages"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_notification_selfreply">{@code GET /notification/selfreply}</a>" included in the "privatemessages" scope */
+    NOTIFICATION_SELFREPLY("GET /notification/selfreply", "privatemessages"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_notification_unread">{@code GET /notification/unread}</a>" included in the "privatemessages" scope */
+    NOTIFICATION_UNREAD("GET /notification/unread", "privatemessages"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_notification_where">{@code GET /notification/where}</a>" included in the "privatemessages" scope */
+    NOTIFICATION_WHERE("GET /notification/where", "privatemessages"),
 
     ///////// read /////////
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D">{@code GET /api/filter/{filterpath}}</a>" included in the "read" scope */
     FILTER_FILTERPATH_GET("GET /api/filter/{filterpath}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D_r_%7Bsrname%7D">{@code GET /api/filter/{filterpath}/r/{srname}}</a>" included in the "read" scope */
     FILTER_FILTERPATH_R_SRNAME_GET("GET /api/filter/{filterpath}/r/{srname}", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_gilded">{@code GET /gilded}</a>" included in the "read" scope */
+    GILDED("GET /gilded", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D">{@code GET /related/{article}}</a>" included in the "read" scope */
+    RELATED_ARTICLE("GET /related/{article}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_rules">{@code GET /rules}</a>" included in the "read" scope */
     RULES("GET /rules", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_sidebar">{@code GET /sidebar}</a>" included in the "read" scope */
@@ -316,8 +332,6 @@ public enum Endpoints {
     CONTROVERSIAL("GET /controversial", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_duplicates_%7Barticle%7D">{@code GET /duplicates/{article}}</a>" included in the "read" scope */
     DUPLICATES_ARTICLE("GET /duplicates/{article}", "read"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_gilded">{@code GET /gilded}</a>" included in the "read" scope */
-    GILDED("GET /gilded", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_hot">{@code GET /hot}</a>" included in the "read" scope */
     HOT("GET /hot", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_live_%7Bthread%7D">{@code GET /live/{thread}}</a>" included in the "read" scope */
@@ -340,8 +354,6 @@ public enum Endpoints {
     SUBREDDIT_ABOUT("GET /r/{subreddit}/about", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_random">{@code GET /random}</a>" included in the "read" scope */
     RANDOM("GET /random", "read"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D">{@code GET /related/{article}}</a>" included in the "read" scope */
-    RELATED_ARTICLE("GET /related/{article}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_search">{@code GET /search}</a>" included in the "read" scope */
     SEARCH("GET /search", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_subreddits_default">{@code GET /subreddits/default}</a>" included in the "read" scope */
