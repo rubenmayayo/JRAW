@@ -51,6 +51,14 @@ public class Account extends Thing implements Created {
         return data("over_18", Boolean.class);
     }
 
+    @JsonProperty
+    public Subreddit getSubreddit() {
+        if (!data.has("subreddit")) {
+            return null;
+        }
+        return new Subreddit(data.get("subreddit"));
+    }
+
     @Override
     public Date getCreated() {
         return _getCreated();
