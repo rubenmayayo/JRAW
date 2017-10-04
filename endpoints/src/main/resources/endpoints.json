@@ -134,7 +134,14 @@
         "GET /message/inbox",
         "GET /message/sent",
         "GET /message/unread",
-        "GET /message/{where}"
+        "GET /message/{where}",
+        "GET /notification/all",
+        "GET /notification/comments",
+        "GET /notification/mentions",
+        "GET /notification/selfreply",
+        "GET /notification/unread",
+        "GET /notification/where"
+
     ],
     "read": [
         "GET /about/banned",
