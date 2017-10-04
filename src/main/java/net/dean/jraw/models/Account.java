@@ -56,7 +56,14 @@ public class Account extends Thing implements Created {
         if (!data.has("subreddit")) {
             return null;
         }
-        return new Subreddit(data.get("subreddit"));
+
+        JsonNode node = data.get("subreddit");
+
+        if (node.isNull()) {
+            return null;
+        }
+
+        return new Subreddit(node);
     }
 
     @Override
