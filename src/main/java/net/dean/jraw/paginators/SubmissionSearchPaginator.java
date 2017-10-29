@@ -158,6 +158,10 @@ public class SubmissionSearchPaginator extends Paginator<Submission> {
          * Amazon's cloudsearch syntax. See <a href="https://www.reddit.com/wiki/search#wiki_cloudsearch_syntax">here</a>
          * for more.
          */
-        CLOUDSEARCH
+        CLOUDSEARCH,
+        /**
+         * Lucene is the default search syntax in reddit. It gets translated to cloudsearch
+         */
+        LUCENE,
     }
 }
