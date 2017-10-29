@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class SubmissionSearchPaginator extends Paginator<Submission> {
     public static final SearchSort DEFAULT_SORTING = SearchSort.RELEVANCE;
-    public static final SearchSyntax DEFAULT_SYNTAX = SearchSyntax.PLAIN;
+    public static final SearchSyntax DEFAULT_SYNTAX = SearchSyntax.LUCENE;
     public static final TimePeriod DEFAULT_TIME_PERIOD = TimePeriod.ALL;
     private SearchSort sorting;
     private String subreddit;
