@@ -1,9 +1,9 @@
-<!--- Generated 2017-08-09 at 00:24:28 CEST. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2017-10-30 at 17:56:07 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
 
-So far **138** endpoints (out of 200 total) have been implemented.
+So far **138** endpoints (out of 216 total) have been implemented.
 
 ##(any scope)
 Method|Endpoint|Implemention
@@ -110,6 +110,26 @@ Method|Endpoint|Implemention
 Method|Endpoint|Implemention
 :----:|--------|------------
 `GET`|[`/about/log`](https://www.reddit.com/dev/api/oauth#GET_about_log)|[`ModLogPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/ModLogPaginator.html#next(boolean))
+
+##modmail
+Method|Endpoint|Implemention
+:----:|--------|------------
+`POST`|[`/api/mod/bulk_read`](https://www.reddit.com/dev/api/oauth#POST_api_mod_bulk_read)|None
+`GET`|[`/api/mod/conversations`](https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations)|None
+`POST`|[`/api/mod/conversations`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations)|None
+`POST`|[`/api/mod/conversations/read`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_read)|None
+`GET`|[`/api/mod/conversations/subreddits`](https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations_subreddits)|None
+`POST`|[`/api/mod/conversations/unread`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_unread)|None
+`GET`|[`/api/mod/conversations/unread/count`](https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations_unread_count)|None
+`GET`|[`/api/mod/conversations/{conversation}`](https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations_%7Bconversation%7D)|None
+`POST`|[`/api/mod/conversations/{conversation}`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D)|None
+`POST`|[`/api/mod/conversations/{conversation}/archive`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_archive)|None
+`DELETE`|[`/api/mod/conversations/{conversation}/highlight`](https://www.reddit.com/dev/api/oauth#DELETE_api_mod_conversations_%7Bconversation%7D_highlight)|None
+`POST`|[`/api/mod/conversations/{conversation}/highlight`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_highlight)|None
+`POST`|[`/api/mod/conversations/{conversation}/mute`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_mute)|None
+`POST`|[`/api/mod/conversations/{conversation}/unarchive`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_unarchive)|None
+`POST`|[`/api/mod/conversations/{conversation}/unmute`](https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_unmute)|None
+`GET`|[`/api/mod/conversations/{conversation}/user`](https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations_%7Bconversation%7D_user)|None
 
 ##modothers
 Method|Endpoint|Implemention

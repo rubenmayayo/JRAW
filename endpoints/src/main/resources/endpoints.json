@@ -64,6 +64,24 @@
         "GET /r/{subreddit}/about/edit",
         "GET /stylesheet"
     ],
+    "modmail": [
+        "POST /api/mod/bulk_read",
+        "GET /api/mod/conversations",
+        "POST /api/mod/conversations",
+        "GET /api/mod/conversations/{conversation}",
+        "POST /api/mod/conversations/{conversation}",
+        "POST /api/mod/conversations/{conversation}/archive",
+        "DELETE /api/mod/conversations/{conversation}/highlight",
+        "POST /api/mod/conversations/{conversation}/highlight",
+        "POST /api/mod/conversations/{conversation}/mute",
+        "POST /api/mod/conversations/{conversation}/unarchive",
+        "POST /api/mod/conversations/{conversation}/unmute",
+        "GET /api/mod/conversations/{conversation}/user",
+        "POST /api/mod/conversations/read",
+        "GET /api/mod/conversations/subreddits",
+        "POST /api/mod/conversations/unread",
+        "GET /api/mod/conversations/unread/count"
+    ],
     "modcontributors": [
         "POST /api_mute_message_author",
         "POST /api/unmute/message/author"

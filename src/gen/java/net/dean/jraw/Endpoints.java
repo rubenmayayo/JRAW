@@ -145,6 +145,40 @@ public enum Endpoints {
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_about_log">{@code GET /about/log}</a>" included in the "modlog" scope */
     ABOUT_LOG("GET /about/log", "modlog"),
 
+    ///////// modmail /////////
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_bulk_read">{@code POST /api/mod/bulk_read}</a>" included in the "modmail" scope */
+    MOD_BULK_READ("POST /api/mod/bulk_read", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations">{@code GET /api/mod/conversations}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_GET("GET /api/mod/conversations", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations">{@code POST /api/mod/conversations}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_POST("POST /api/mod/conversations", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_read">{@code POST /api/mod/conversations/read}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_READ("POST /api/mod/conversations/read", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations_subreddits">{@code GET /api/mod/conversations/subreddits}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_SUBREDDITS("GET /api/mod/conversations/subreddits", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_unread">{@code POST /api/mod/conversations/unread}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_UNREAD("POST /api/mod/conversations/unread", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations_unread_count">{@code GET /api/mod/conversations/unread/count}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_UNREAD_COUNT("GET /api/mod/conversations/unread/count", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations_%7Bconversation%7D">{@code GET /api/mod/conversations/{conversation}}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_GET("GET /api/mod/conversations/{conversation}", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D">{@code POST /api/mod/conversations/{conversation}}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_POST("POST /api/mod/conversations/{conversation}", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_archive">{@code POST /api/mod/conversations/{conversation}/archive}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_ARCHIVE("POST /api/mod/conversations/{conversation}/archive", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#DELETE_api_mod_conversations_%7Bconversation%7D_highlight">{@code DELETE /api/mod/conversations/{conversation}/highlight}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_HIGHLIGHT_DELETE("DELETE /api/mod/conversations/{conversation}/highlight", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_highlight">{@code POST /api/mod/conversations/{conversation}/highlight}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_HIGHLIGHT_POST("POST /api/mod/conversations/{conversation}/highlight", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_mute">{@code POST /api/mod/conversations/{conversation}/mute}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_MUTE("POST /api/mod/conversations/{conversation}/mute", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_unarchive">{@code POST /api/mod/conversations/{conversation}/unarchive}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_UNARCHIVE("POST /api/mod/conversations/{conversation}/unarchive", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_mod_conversations_%7Bconversation%7D_unmute">{@code POST /api/mod/conversations/{conversation}/unmute}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_UNMUTE("POST /api/mod/conversations/{conversation}/unmute", "modmail"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_mod_conversations_%7Bconversation%7D_user">{@code GET /api/mod/conversations/{conversation}/user}</a>" included in the "modmail" scope */
+    MOD_CONVERSATIONS_CONVERSATION_USER("GET /api/mod/conversations/{conversation}/user", "modmail"),
+
     ///////// modothers /////////
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_setpermissions">{@code POST /api/setpermissions}</a>" included in the "modothers" scope */
     SETPERMISSIONS("POST /api/setpermissions", "modothers"),
