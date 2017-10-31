@@ -13,7 +13,10 @@ import java.util.Map;
  * This class provides a way to search for subreddits by both name and description
  */
 public class SubredditSearchPaginator extends Paginator<Subreddit> {
+    public static final SubredditSearchSort DEFAULT_SORTING = SubredditSearchSort.RELEVANCE;
     private String query;
+    private SubredditSearchSort sorting;
+
 
     /**
      * Instantiates a new Paginator
@@ -24,6 +27,7 @@ public class SubredditSearchPaginator extends Paginator<Subreddit> {
     public SubredditSearchPaginator(RedditClient creator, String query) {
         super(creator, Subreddit.class);
         this.query = query;
+        this.sorting = DEFAULT_SORTING;
     }
 
     @Override
@@ -41,6 +45,42 @@ public class SubredditSearchPaginator extends Paginator<Subreddit> {
     protected Map<String, String> getExtraQueryArgs() {
         Map<String, String> args = new HashMap<>(super.getExtraQueryArgs());
         args.put("q", query);
+        args.put("sort", sorting.name().toLowerCase());
         return args;
+    }
+
+    @Override
+    public void setSorting(Sorting sorting) {
+        throw new UnsupportedOperationException("Use setSearchSorting(SubredditSearchSort)");
+    }
+
+    /**
+     * Sets the new sorting and invalidates the paginator
+     * @param sorting The new sorting
+     */
+    public void setSearchSorting(SubredditSearchSort sorting) {
+        this.sorting = sorting;
+        invalidate();
+    }
+
+    /**
+     * Gets the current sorting
+     * @return The current sorting
+     */
+    public SubredditSearchSort getSearchSorting() {
+        return sorting;
+    }
+
+    @Override
+    protected String getSortingString() {
+        return sorting.name().toLowerCase();
+    }
+
+    /**
+     * How the search results can be sorted
+     */
+    public enum SubredditSearchSort {
+        RELEVANCE,
+        ACTIVITY
     }
 }
