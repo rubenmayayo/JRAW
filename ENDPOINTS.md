@@ -1,9 +1,9 @@
-<!--- Generated 2017-10-30 at 17:56:07 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2017-11-02 at 20:15:09 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
 
-So far **138** endpoints (out of 216 total) have been implemented.
+So far **138** endpoints (out of 217 total) have been implemented.
 
 ##(any scope)
 Method|Endpoint|Implemention
@@ -210,6 +210,7 @@ Method|Endpoint|Implemention
 `GET`|[`/api/filter/{filterpath}`](https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D)|None
 `GET`|[`/api/filter/{filterpath}/r/{srname}`](https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D_r_%7Bsrname%7D)|None
 `GET`|[`/gilded`](https://www.reddit.com/dev/api/oauth#GET_gilded)|None
+`GET`|[`/r/{subreddit}/about/rules`](https://www.reddit.com/dev/api/oauth#GET_r_%7Bsubreddit%7D_about_rules)|None
 `GET`|[`/related/{article}`](https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D)|None
 `GET`|[`/rules`](https://www.reddit.com/dev/api/oauth#GET_rules)|None
 `GET`|[`/sidebar`](https://www.reddit.com/dev/api/oauth#GET_sidebar)|None

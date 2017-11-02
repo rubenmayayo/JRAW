@@ -206,6 +206,7 @@
         "GET /prefs/friends",
         "GET /prefs/{where}",
         "GET /r/{subreddit}/about",
+        "GET /r/{subreddit}/about/rules",
         "GET /random",
         "GET /related/{article}",
         "GET /rules",

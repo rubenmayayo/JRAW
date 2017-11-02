@@ -296,6 +296,8 @@ public enum Endpoints {
     FILTER_FILTERPATH_R_SRNAME_GET("GET /api/filter/{filterpath}/r/{srname}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_gilded">{@code GET /gilded}</a>" included in the "read" scope */
     GILDED("GET /gilded", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_r_%7Bsubreddit%7D_about_rules">{@code GET /r/{subreddit}/about/rules}</a>" included in the "read" scope */
+    SUBREDDIT_ABOUT_RULES("GET /r/{subreddit}/about/rules", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D">{@code GET /related/{article}}</a>" included in the "read" scope */
     RELATED_ARTICLE("GET /related/{article}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_rules">{@code GET /rules}</a>" included in the "read" scope */
