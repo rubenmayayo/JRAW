@@ -219,6 +219,8 @@ public final class Subreddit extends Thing implements Comparable<Subreddit>, Cre
         RESTRICTED,
         /** Only users with reddit gold can post */
         GOLD_RESTRICTED,
+        /** Profile posts */
+        USER,
         ARCHIVED
     }
 
