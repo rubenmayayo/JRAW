@@ -373,6 +373,27 @@ public class RedditClient extends RestClient {
     }
 
     /**
+     * Gets the trophies for a specific user
+     * @param subreddit The subreddit to find the rules for
+     * @throws NetworkException If the request was not successful
+     * @return A list of awards
+     */
+    @EndpointImplementation(Endpoints.SUBREDDIT_ABOUT_RULES)
+    public List<Rule> getRules(String subreddit) throws NetworkException {
+
+        HttpRequest.Builder request = request();
+        request = request.endpoint(Endpoints.SUBREDDIT_ABOUT_RULES, subreddit);
+        RestResponse response = execute(request.build());
+
+        List<Rule> rules = new ArrayList<>();
+        for (JsonNode ruleNode : response.getJson().get("rules")) {
+            rules.add(new Rule(ruleNode));
+        }
+
+        return rules;
+    }
+
+    /**
      * Gets a list of subreddit names by a topic. For example, the topic "programming" returns "programming",
      * "ProgrammerHumor", etc.
      *
