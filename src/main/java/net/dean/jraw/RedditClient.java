@@ -373,10 +373,10 @@ public class RedditClient extends RestClient {
     }
 
     /**
-     * Gets the trophies for a specific user
+     * Gets the rules for a specific subreddit
      * @param subreddit The subreddit to find the rules for
      * @throws NetworkException If the request was not successful
-     * @return A list of awards
+     * @return A list of rules
      */
     @EndpointImplementation(Endpoints.SUBREDDIT_ABOUT_RULES)
     public List<Rule> getRules(String subreddit) throws NetworkException {
@@ -440,6 +440,34 @@ public class RedditClient extends RestClient {
 
         for (JsonNode name : node.get("names")) {
             subs.add(name.asText());
+        }
+
+        return subs;
+    }
+
+    /**
+     * Gets a list of subreddits that start with the given string. For instance, searching for "fun" would return
+     * {@code ["funny", "FunnyandSad", "funnysigns", "funnycharts", ...]}
+     * @param start The begging of the subreddit to search for
+     * @param includeNsfw Whether to include NSFW subreddits.
+     * @return A list of subreddits that starts with the given string
+     * @throws NetworkException If the request was not successful
+     */
+    @EndpointImplementation(Endpoints.SEARCH_SUBREDDITS)
+    public List<SubredditSearch> searchSubredditsCustom(String start, boolean includeNsfw) throws NetworkException {
+        List<SubredditSearch> subs = new ArrayList<>();
+
+        HttpRequest request = request()
+                .endpoint(Endpoints.SEARCH_SUBREDDITS)
+                .post(JrawUtils.mapOf(
+                        "query", start,
+                        "include_over_18", includeNsfw
+                )).build();
+        JsonNode node = execute(request).getJson();
+
+        for (JsonNode name : node.get("subreddits")) {
+            SubredditSearch subreddit = new SubredditSearch(name);
+            subs.add(subreddit);
         }
 
         return subs;

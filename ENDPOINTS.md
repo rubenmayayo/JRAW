@@ -1,9 +1,9 @@
-<!--- Generated 2017-11-02 at 20:15:09 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2018-01-19 at 20:58:18 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
 
-So far **138** endpoints (out of 217 total) have been implemented.
+So far **139** endpoints (out of 218 total) have been implemented.
 
 ##(any scope)
 Method|Endpoint|Implemention
@@ -209,8 +209,8 @@ Method|Endpoint|Implemention
 :----:|--------|------------
 `GET`|[`/api/filter/{filterpath}`](https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D)|None
 `GET`|[`/api/filter/{filterpath}/r/{srname}`](https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D_r_%7Bsrname%7D)|None
+`POST`|[`/api/search_subreddits`](https://www.reddit.com/dev/api/oauth#POST_api_search_subreddits)|None
 `GET`|[`/gilded`](https://www.reddit.com/dev/api/oauth#GET_gilded)|None
-`GET`|[`/r/{subreddit}/about/rules`](https://www.reddit.com/dev/api/oauth#GET_r_%7Bsubreddit%7D_about_rules)|None
 `GET`|[`/related/{article}`](https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D)|None
 `GET`|[`/rules`](https://www.reddit.com/dev/api/oauth#GET_rules)|None
 `GET`|[`/sidebar`](https://www.reddit.com/dev/api/oauth#GET_sidebar)|None
@@ -256,6 +256,7 @@ Method|Endpoint|Implemention
 `GET`|[`/prefs/friends`](https://www.reddit.com/dev/api/oauth#GET_prefs_friends)|[`ImportantUserPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/ImportantUserPaginator.html#next(boolean))
 `GET`|[`/prefs/{where}`](https://www.reddit.com/dev/api/oauth#GET_prefs_%7Bwhere%7D)|[`ImportantUserPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/ImportantUserPaginator.html#next(boolean))
 `GET`|[`/r/{subreddit}/about`](https://www.reddit.com/dev/api/oauth#GET_r_%7Bsubreddit%7D_about)|[`RedditClient.getSubreddit(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/RedditClient.html#getSubreddit(java.lang.String))
+`GET`|[`/r/{subreddit}/about/rules`](https://www.reddit.com/dev/api/oauth#GET_r_%7Bsubreddit%7D_about_rules)|[`RedditClient.getRules(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/RedditClient.html#getRules(java.lang.String))
 `GET`|[`/random`](https://www.reddit.com/dev/api/oauth#GET_random)|[`RedditClient.getRandomSubmission(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/RedditClient.html#getRandomSubmission(java.lang.String))
 `GET`|[`/search`](https://www.reddit.com/dev/api/oauth#GET_search)|[`SubmissionSearchPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/SubmissionSearchPaginator.html#next(boolean))
 `GET`|[`/subreddits/default`](https://www.reddit.com/dev/api/oauth#GET_subreddits_default)|[`SubredditStream.next()`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/SubredditStream.html#next())

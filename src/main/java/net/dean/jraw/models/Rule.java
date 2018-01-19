@@ -10,44 +10,44 @@ import net.dean.jraw.models.meta.Model;
 import java.util.Date;
 
 /**
- * Represents a trophy displayed in a user's trophy case
+ * Represents a subreddit rule
  *
- * @see RedditClient#getTrophies()
+ * @see RedditClient#getRules(String subreddit)
  */
 @Model(kind = Model.Kind.NONE)
 public final class Rule extends Thing implements Created {
     /**
-     * Instantiates a new Trophy
+     * Instantiates a new Rules
      */
     public Rule(JsonNode dataNode) {
         super(dataNode);
     }
 
-    /** The URL to the 70x70 version of the icon */
+    /** Description of the rules */
     @JsonProperty
     public String getDescription() {
         return data("description");
     }
 
-    /** The URL to the 40x40 version of the icon */
+    /** Short description of the rule */
     @JsonProperty
     public String getShortName() {
         return data("short_name");
     }
 
-    /** Optional text that describes to what degree the award was achieved */
+    /** Text that describes the violation reason, used in report dialogs */
     @JsonProperty
     public String getViolationReason() {
         return data("violation_reason");
     }
 
-    /** The award's ID (different than the normal ID) */
+    /** The rule priority order */
     @JsonProperty
     public Integer getPriority() {
         return data("priority", Integer.class);
     }
 
-    /** An external link explaining this award */
+    /** Description of the rule in html format */
     @JsonProperty
     public String getDescriptionHtml() {
         return data("description_html");
@@ -65,7 +65,7 @@ public final class Rule extends Thing implements Created {
         return _getCreated();
     }
 
-    /** This class represents a list of all the available subreddit types */
+    /** This class represents a list of all the available rule types */
     public enum Type {
         /** Applies to posts */
         LINK,
