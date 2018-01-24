@@ -489,7 +489,7 @@ public class RedditClient extends RestClient {
 
         HttpRequest request = request()
                 .endpoint(Endpoints.SUBREDDIT_AUTOCOMPLETE)
-                .post(JrawUtils.mapOf(
+                .query(JrawUtils.mapOf(
                         "query", query,
                         "include_profiles", includeProfiles,
                         "include_over_18", includeNsfw
