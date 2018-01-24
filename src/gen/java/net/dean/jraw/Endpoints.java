@@ -294,8 +294,8 @@ public enum Endpoints {
     FILTER_FILTERPATH_GET("GET /api/filter/{filterpath}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D_r_%7Bsrname%7D">{@code GET /api/filter/{filterpath}/r/{srname}}</a>" included in the "read" scope */
     FILTER_FILTERPATH_R_SRNAME_GET("GET /api/filter/{filterpath}/r/{srname}", "read"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_search_subreddits">{@code POST /api/search_subreddits}</a>" included in the "read" scope */
-    SEARCH_SUBREDDITS("POST /api/search_subreddits", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_subreddit_autocomplete">{@code GET /api/subreddit_autocomplete}</a>" included in the "read" scope */
+    SUBREDDIT_AUTOCOMPLETE("GET /api/subreddit_autocomplete", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_gilded">{@code GET /gilded}</a>" included in the "read" scope */
     GILDED("GET /gilded", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D">{@code GET /related/{article}}</a>" included in the "read" scope */
@@ -352,6 +352,8 @@ public enum Endpoints {
     RECOMMEND_SR_SRNAMES("GET /api/recommend/sr/{srnames}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_search_reddit_names">{@code POST /api/search_reddit_names}</a>" included in the "read" scope */
     SEARCH_REDDIT_NAMES("POST /api/search_reddit_names", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_search_subreddits">{@code POST /api/search_subreddits}</a>" included in the "read" scope */
+    SEARCH_SUBREDDITS("POST /api/search_subreddits", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_subreddits_by_topic">{@code GET /api/subreddits_by_topic}</a>" included in the "read" scope */
     SUBREDDITS_BY_TOPIC("GET /api/subreddits_by_topic", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_v1_me_blocked">{@code GET /api/v1/me/blocked}</a>" included in the "read" scope */

@@ -188,6 +188,7 @@
         "GET /api/recommend/sr/{srnames}",
         "POST /api/search_reddit_names",
         "POST /api/search_subreddits",
+        "GET /api/subreddit_autocomplete",
         "GET /api/subreddits_by_topic",
         "GET /api/v1/me/blocked",
         "GET /api/v1/me/friends",

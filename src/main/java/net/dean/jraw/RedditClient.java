@@ -474,6 +474,37 @@ public class RedditClient extends RestClient {
     }
 
     /**
+     * Return a list of subreddits and data for subreddits whose names start with 'query'.
+     * Uses typeahead endpoint to recieve the list of subreddits names.
+     * Typeahead provides exact matches, typo correction, fuzzy matching and boosts subreddits
+     * to the top that the user is subscribed to.
+     * @param query The begging of the subreddit to search for
+     * @param includeNsfw Whether to include NSFW subreddits.
+     * @return A list of subreddits that starts with the given string
+     * @throws NetworkException If the request was not successful
+     */
+    @EndpointImplementation(Endpoints.SUBREDDIT_AUTOCOMPLETE)
+    public List<SubredditSearch> subredditAutocomplete(String query, boolean includeProfiles, boolean includeNsfw) throws NetworkException {
+        List<SubredditSearch> subs = new ArrayList<>();
+
+        HttpRequest request = request()
+                .endpoint(Endpoints.SEARCH_SUBREDDITS)
+                .post(JrawUtils.mapOf(
+                        "query", query,
+                        "include_profiles", includeProfiles,
+                        "include_over_18", includeNsfw
+                )).build();
+        JsonNode node = execute(request).getJson();
+
+        for (JsonNode name : node.get("subreddits")) {
+            SubredditSearch subreddit = new SubredditSearch(name);
+            subs.add(subreddit);
+        }
+
+        return subs;
+    }
+
+    /**
      * Gets the contents of the CSS file affiliated with a given subreddit
      * @param subreddit The name of the subreddit whose stylesheet will be fetched. Must not be null.
      * @return The content of the raw CSS file
