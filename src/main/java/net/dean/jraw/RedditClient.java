@@ -488,7 +488,7 @@ public class RedditClient extends RestClient {
         List<SubredditSearch> subs = new ArrayList<>();
 
         HttpRequest request = request()
-                .endpoint(Endpoints.SEARCH_SUBREDDITS)
+                .endpoint(Endpoints.SUBREDDIT_AUTOCOMPLETE)
                 .post(JrawUtils.mapOf(
                         "query", query,
                         "include_profiles", includeProfiles,
