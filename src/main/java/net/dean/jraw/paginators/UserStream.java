@@ -7,27 +7,25 @@ import net.dean.jraw.models.Listing;
 import net.dean.jraw.models.Subreddit;
 
 /**
- * This paginator will iterate through subreddits based on certain criteria.
+ * This paginator will iterate through users based on certain criteria.
  */
-public class SubredditStream extends GenericPaginator<Subreddit> {
+public class UserStream extends GenericPaginator<Subreddit> {
 
     /**
      * Instantiates a new AllSubredditsPaginator
      *
      * @param creator The RedditClient that will be used to send HTTP requests
-     * @param where One of "popular", "new", "gold", "default", or "employee."
+     * @param where One of "popular", "new"
      */
-    public SubredditStream(RedditClient creator, String where) {
+    public UserStream(RedditClient creator, String where) {
         super(creator, Subreddit.class, where);
     }
 
     @Override
     @EndpointImplementation({
-            Endpoints.SUBREDDITS_POPULAR,
-            Endpoints.SUBREDDITS_NEW,
-            Endpoints.SUBREDDITS_GOLD,
-            Endpoints.SUBREDDITS_DEFAULT,
-            Endpoints.SUBREDDITS_WHERE
+            Endpoints.USERS_POPULAR,
+            Endpoints.USERS_NEW,
+            Endpoints.USERS_WHERE
     })
     public Listing<Subreddit> next() {
         // Just call super so that we can add the @EndpointImplementation annotation
@@ -36,11 +34,11 @@ public class SubredditStream extends GenericPaginator<Subreddit> {
 
     @Override
     public String getUriPrefix() {
-        return "/subreddits/";
+        return "/users/";
     }
 
     @Override
     public String[] getWhereValues() {
-        return new String[] {"popular", "new", "gold", "default", "employee"};
+        return new String[] {"popular", "new"};
     }
 }

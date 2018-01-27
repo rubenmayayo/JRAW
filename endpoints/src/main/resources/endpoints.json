@@ -221,6 +221,9 @@
         "GET /subreddits/popular",
         "GET /subreddits/search",
         "GET /subreddits/{where}",
+        "GET /users/popular",
+        "GET /users/new",
+        "GET /users/{where}",
         "GET /top",
         "GET /user/{username}/about",
         "GET /{sort}"
