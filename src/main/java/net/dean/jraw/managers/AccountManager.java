@@ -71,10 +71,17 @@ public class AccountManager extends AbstractManager {
                 "resubmit", b.resubmit,
                 "save", b.saveAfter,
                 "sendreplies", b.sendRepliesToInbox,
+                "nsfw", b.nsfw,
+                "spoiler", b.spoiler,
                 "sr", b.subreddit,
                 "then", "comments",
                 "title", b.title
         );
+
+        if (b.flairTemplate != null) {
+            args.put("flair_id", b.flairTemplate.getId());
+            args.put("flair_text", b.flairTemplate.getText());
+        }
 
         if (b.selfPost) {
             args.put("text", b.selfText);
@@ -545,6 +552,9 @@ public class AccountManager extends AbstractManager {
         private boolean saveAfter; // = false;
         private boolean sendRepliesToInbox; // = false;
         private boolean resubmit = true;
+        private boolean nsfw; // = false;
+        private boolean spoiler; // = false;
+        private FlairTemplate flairTemplate;
 
         /**
          * Instantiates a new SubmissionBuilder that will result in a self post.
@@ -591,6 +601,36 @@ public class AccountManager extends AbstractManager {
          */
         public SubmissionBuilder sendRepliesToInbox(boolean flag) {
             this.sendRepliesToInbox = flag;
+            return this;
+        }
+
+        /**
+         * Whether to set as NSFW
+         * @param flag Post is NSFW
+         * @return This builder
+         */
+        public SubmissionBuilder setNsfw(boolean flag) {
+            this.nsfw = flag;
+            return this;
+        }
+
+        /**
+         * Whether to set as Spoiler
+         * @param flag Post is Spoiler
+         * @return This builder
+         */
+        public SubmissionBuilder setSpoiler(boolean flag) {
+            this.spoiler = flag;
+            return this;
+        }
+
+        /**
+         * Whether to set a flair
+         * @param flairTemplate The flair to set
+         * @return This builder
+         */
+        public SubmissionBuilder setFlair(FlairTemplate flairTemplate) {
+            this.flairTemplate = flairTemplate;
             return this;
         }
 
