@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
 import net.dean.jraw.AccountPreferencesEditor;
 import net.dean.jraw.ApiException;
+import net.dean.jraw.Endpoint;
 import net.dean.jraw.EndpointImplementation;
 import net.dean.jraw.Endpoints;
 import net.dean.jraw.util.JrawUtils;
@@ -79,8 +80,8 @@ public class AccountManager extends AbstractManager {
         );
 
         if (b.flairTemplate != null) {
-            args.put("flair_id", b.flairTemplate.getId());
-            args.put("flair_text", b.flairTemplate.getText());
+            args.put("flair_id", b.flairTemplate.data("id"));
+            args.put("flair_text", b.flairTemplate.data("text"));
         }
 
         if (b.selfPost) {
@@ -321,6 +322,24 @@ public class AccountManager extends AbstractManager {
     }
 
     /**
+     * Gets a list of possible link flair templates for this subreddit. See also: {@link #getFlairChoices(Submission)},
+     * {@link #getCurrentFlair(String)}, {@link #getCurrentFlair(Submission)}
+     *
+     * @param subreddit The subreddit to look up
+     * @return A list of flair templates
+     * @throws NetworkException If the request was not successful
+     * @throws ApiException If the Reddit API returned an error
+     */
+    public List<FlairTemplate> getFlairLinkChoices(String subreddit) throws NetworkException, ApiException {
+        ImmutableList.Builder<FlairTemplate> templates = ImmutableList.builder();
+        for (JsonNode choiceNode : getFlairLinkChoicesRootNode(subreddit)) {
+            templates.add(new FlairTemplate(choiceNode));
+        }
+
+        return templates.build();
+    }
+
+    /**
      * Gets the current user flair for this subreddit
      * @param subreddit The subreddit to look up
      * @return The flair template that is being used by the authenticated user
@@ -536,6 +555,14 @@ public class AccountManager extends AbstractManager {
         RestResponse response = genericPost(reddit.request()
                 .path("/r/" + subreddit + Endpoints.FLAIRSELECTOR.getEndpoint().getUri())
                 .post(formArgs.isEmpty() ? null : formArgs)
+                .build());
+        return response.getJson();
+    }
+
+    private JsonNode getFlairLinkChoicesRootNode(String subreddit) throws NetworkException, ApiException {
+        RestResponse response = reddit.execute(reddit.request()
+                .path("/r/" + subreddit + Endpoints.LINK_FLAIR.getEndpoint().getUri())
+                .query()
                 .build());
         return response.getJson();
     }

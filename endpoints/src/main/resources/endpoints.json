@@ -25,6 +25,7 @@
     "flair": [
         "POST /api/flairselector",
         "POST /api/selectflair",
+        "GET /api/link_flair",
         "POST /api/setflairenabled"
     ],
     "history": [

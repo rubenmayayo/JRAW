@@ -46,6 +46,8 @@ public enum Endpoints {
     ///////// flair /////////
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_flairselector">{@code POST /api/flairselector}</a>" included in the "flair" scope */
     FLAIRSELECTOR("POST /api/flairselector", "flair"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_link_flair">{@code GET /api/link_flair}</a>" included in the "flair" scope */
+    LINK_FLAIR("GET /api/link_flair", "flair"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_selectflair">{@code POST /api/selectflair}</a>" included in the "flair" scope */
     SELECTFLAIR("POST /api/selectflair", "flair"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_setflairenabled">{@code POST /api/setflairenabled}</a>" included in the "flair" scope */
@@ -304,12 +306,6 @@ public enum Endpoints {
     SIDEBAR("GET /sidebar", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_sticky">{@code GET /sticky}</a>" included in the "read" scope */
     STICKY("GET /sticky", "read"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_users_new">{@code GET /users/new}</a>" included in the "read" scope */
-    USERS_NEW("GET /users/new", "read"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_users_popular">{@code GET /users/popular}</a>" included in the "read" scope */
-    USERS_POPULAR("GET /users/popular", "read"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_users_%7Bwhere%7D">{@code GET /users/{where}}</a>" included in the "read" scope */
-    USERS_WHERE("GET /users/{where}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_about_banned">{@code GET /about/banned}</a>" included in the "read" scope */
     ABOUT_BANNED("GET /about/banned", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_about_contributors">{@code GET /about/contributors}</a>" included in the "read" scope */
@@ -418,6 +414,12 @@ public enum Endpoints {
     TOP("GET /top", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_user_%7Busername%7D_about">{@code GET /user/{username}/about}</a>" included in the "read" scope */
     USER_USERNAME_ABOUT("GET /user/{username}/about", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_users_new">{@code GET /users/new}</a>" included in the "read" scope */
+    USERS_NEW("GET /users/new", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_users_popular">{@code GET /users/popular}</a>" included in the "read" scope */
+    USERS_POPULAR("GET /users/popular", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_users_%7Bwhere%7D">{@code GET /users/{where}}</a>" included in the "read" scope */
+    USERS_WHERE("GET /users/{where}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_%7Bsort%7D">{@code GET /{sort}}</a>" included in the "read" scope */
     SORT("GET /{sort}", "read"),
 

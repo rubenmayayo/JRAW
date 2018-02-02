@@ -1,9 +1,9 @@
-<!--- Generated 2018-01-28 at 00:57:08 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2018-02-02 at 23:44:52 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
 
-So far **141** endpoints (out of 222 total) have been implemented.
+So far **145** endpoints (out of 223 total) have been implemented.
 
 ##(any scope)
 Method|Endpoint|Implemention
@@ -40,6 +40,7 @@ Method|Endpoint|Implemention
 Method|Endpoint|Implemention
 :----:|--------|------------
 `POST`|[`/api/flairselector`](https://www.reddit.com/dev/api/oauth#POST_api_flairselector)|[`AccountManager.getFlairChoices(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#getFlairChoices(java.lang.String))
+`GET`|[`/api/link_flair`](https://www.reddit.com/dev/api/oauth#GET_api_link_flair)|[`AccountManager.getFlairLinkChoices(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#getFlairLinkChoices(java.lang.String))
 `POST`|[`/api/selectflair`](https://www.reddit.com/dev/api/oauth#POST_api_selectflair)|[`ModerationManager.setFlair(String, FlairTemplate, String, Submission, String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/ModerationManager.html#setFlair(java.lang.String, net.dean.jraw.models.FlairTemplate, java.lang.String, net.dean.jraw.models.Submission, java.lang.String))
 `POST`|[`/api/setflairenabled`](https://www.reddit.com/dev/api/oauth#POST_api_setflairenabled)|[`AccountManager.setFlairEnabled(String, boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#setFlairEnabled(java.lang.String, boolean))
 
@@ -214,9 +215,6 @@ Method|Endpoint|Implemention
 `GET`|[`/rules`](https://www.reddit.com/dev/api/oauth#GET_rules)|None
 `GET`|[`/sidebar`](https://www.reddit.com/dev/api/oauth#GET_sidebar)|None
 `GET`|[`/sticky`](https://www.reddit.com/dev/api/oauth#GET_sticky)|None
-`GET`|[`/users/new`](https://www.reddit.com/dev/api/oauth#GET_users_new)|None
-`GET`|[`/users/popular`](https://www.reddit.com/dev/api/oauth#GET_users_popular)|None
-`GET`|[`/users/{where}`](https://www.reddit.com/dev/api/oauth#GET_users_%7Bwhere%7D)|None
 `GET`|[`/about/banned`](https://www.reddit.com/dev/api/oauth#GET_about_banned)|[`UserRecordPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/UserRecordPaginator.html#next(boolean))
 `GET`|[`/about/contributors`](https://www.reddit.com/dev/api/oauth#GET_about_contributors)|[`UserRecordPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/UserRecordPaginator.html#next(boolean))
 `GET`|[`/about/edited`](https://www.reddit.com/dev/api/oauth#GET_about_edited)|[`ModeratorPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/ModeratorPaginator.html#next(boolean))
@@ -271,6 +269,9 @@ Method|Endpoint|Implemention
 `GET`|[`/subreddits/{where}`](https://www.reddit.com/dev/api/oauth#GET_subreddits_%7Bwhere%7D)|[`SubredditStream.next()`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/SubredditStream.html#next())
 `GET`|[`/top`](https://www.reddit.com/dev/api/oauth#GET_top)|[`SubredditPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/SubredditPaginator.html#next(boolean))
 `GET`|[`/user/{username}/about`](https://www.reddit.com/dev/api/oauth#GET_user_%7Busername%7D_about)|[`RedditClient.getUser(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/RedditClient.html#getUser(java.lang.String))
+`GET`|[`/users/new`](https://www.reddit.com/dev/api/oauth#GET_users_new)|[`UserStream.next()`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/UserStream.html#next())
+`GET`|[`/users/popular`](https://www.reddit.com/dev/api/oauth#GET_users_popular)|[`UserStream.next()`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/UserStream.html#next())
+`GET`|[`/users/{where}`](https://www.reddit.com/dev/api/oauth#GET_users_%7Bwhere%7D)|[`UserStream.next()`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/UserStream.html#next())
 `GET`|[`/{sort}`](https://www.reddit.com/dev/api/oauth#GET_%7Bsort%7D)|[`SubredditPaginator.next(boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/paginators/SubredditPaginator.html#next(boolean))
 
 ##report
