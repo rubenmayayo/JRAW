@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
 import net.dean.jraw.AccountPreferencesEditor;
 import net.dean.jraw.ApiException;
-import net.dean.jraw.Endpoint;
 import net.dean.jraw.EndpointImplementation;
 import net.dean.jraw.Endpoints;
 import net.dean.jraw.util.JrawUtils;
@@ -88,6 +87,11 @@ public class AccountManager extends AbstractManager {
             args.put("text", b.selfText);
         } else {
             args.put("url", b.url.toExternalForm());
+        }
+
+        if (b.crosspostFullName != null && !b.crosspostFullName.isEmpty()) {
+            args.put("kind", "crosspost");
+            args.put("crosspost_fullname", b.crosspostFullName);
         }
 
         if (captcha != null) {
@@ -582,6 +586,7 @@ public class AccountManager extends AbstractManager {
         private boolean nsfw; // = false;
         private boolean spoiler; // = false;
         private FlairTemplate flairTemplate;
+        private String crosspostFullName;
 
         /**
          * Instantiates a new SubmissionBuilder that will result in a self post.
@@ -658,6 +663,16 @@ public class AccountManager extends AbstractManager {
          */
         public SubmissionBuilder setFlair(FlairTemplate flairTemplate) {
             this.flairTemplate = flairTemplate;
+            return this;
+        }
+
+        /**
+         * Whether this is a crosspost
+         * @param crosspostFullName The full name of the submission to crosspost
+         * @return This builder
+         */
+        public SubmissionBuilder setCrosspostFullName(String crosspostFullName) {
+            this.crosspostFullName = crosspostFullName;
             return this;
         }
 
