@@ -16,6 +16,7 @@ public class SubredditSearchPaginator extends Paginator<Subreddit> {
     public static final SubredditSearchSort DEFAULT_SORTING = SubredditSearchSort.RELEVANCE;
     private String query;
     private SubredditSearchSort sorting;
+    private boolean includeNsfw;
 
 
     /**
@@ -46,7 +47,13 @@ public class SubredditSearchPaginator extends Paginator<Subreddit> {
         Map<String, String> args = new HashMap<>(super.getExtraQueryArgs());
         args.put("q", query);
         args.put("sort", sorting.name().toLowerCase());
+        args.put("include_over_18", includeNsfw ? "on" : "off");
         return args;
+    }
+
+    public void setIncludeNsfw(boolean includeNsfw) {
+        this.includeNsfw = includeNsfw;
+        invalidate();
     }
 
     @Override

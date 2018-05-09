@@ -23,6 +23,7 @@ public class SubmissionSearchPaginator extends Paginator<Submission> {
     private String query;
     private SearchSyntax syntax;
     private String owner;
+    private boolean includeNsfw;
 
     /**
      * Instantiates a new Paginator
@@ -66,7 +67,8 @@ public class SubmissionSearchPaginator extends Paginator<Submission> {
                 "t", timePeriod.name().toLowerCase(),
                 "restrict_sr", subreddit == null ? "off" : "on",
                 "sort", sorting.name().toLowerCase(),
-                "syntax", syntax.name().toLowerCase()
+                "syntax", syntax.name().toLowerCase(),
+                "include_over_18", includeNsfw ? "on" : "off"
         );
     }
 
@@ -82,6 +84,11 @@ public class SubmissionSearchPaginator extends Paginator<Submission> {
     public void setMultireddit(String owner, String multireddit) {
         this.owner = owner;
         this.subreddit = multireddit;
+        invalidate();
+    }
+
+    public void setIncludeNsfw(boolean includeNsfw) {
+        this.includeNsfw = includeNsfw;
         invalidate();
     }
 
