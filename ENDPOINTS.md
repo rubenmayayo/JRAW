@@ -1,9 +1,9 @@
-<!--- Generated 2018-02-02 at 23:44:52 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2018-09-05 at 20:19:06 CEST. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
 
-So far **145** endpoints (out of 223 total) have been implemented.
+So far **144** endpoints (out of 224 total) have been implemented.
 
 ##(any scope)
 Method|Endpoint|Implemention
@@ -39,8 +39,8 @@ Method|Endpoint|Implemention
 ##flair
 Method|Endpoint|Implemention
 :----:|--------|------------
+`GET`|[`/api/link_flair`](https://www.reddit.com/dev/api/oauth#GET_api_link_flair)|None
 `POST`|[`/api/flairselector`](https://www.reddit.com/dev/api/oauth#POST_api_flairselector)|[`AccountManager.getFlairChoices(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#getFlairChoices(java.lang.String))
-`GET`|[`/api/link_flair`](https://www.reddit.com/dev/api/oauth#GET_api_link_flair)|[`AccountManager.getFlairLinkChoices(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#getFlairLinkChoices(java.lang.String))
 `POST`|[`/api/selectflair`](https://www.reddit.com/dev/api/oauth#POST_api_selectflair)|[`ModerationManager.setFlair(String, FlairTemplate, String, Submission, String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/ModerationManager.html#setFlair(java.lang.String, net.dean.jraw.models.FlairTemplate, java.lang.String, net.dean.jraw.models.Submission, java.lang.String))
 `POST`|[`/api/setflairenabled`](https://www.reddit.com/dev/api/oauth#POST_api_setflairenabled)|[`AccountManager.setFlairEnabled(String, boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#setFlairEnabled(java.lang.String, boolean))
 
@@ -187,6 +187,7 @@ Method|Endpoint|Implemention
 Method|Endpoint|Implemention
 :----:|--------|------------
 `POST`|[`/api/block`](https://www.reddit.com/dev/api/oauth#POST_api_block)|None
+`POST`|[`/api/del_msg`](https://www.reddit.com/dev/api/oauth#POST_api_del_msg)|None
 `POST`|[`/api/unblock_subreddit`](https://www.reddit.com/dev/api/oauth#POST_api_unblock_subreddit)|None
 `GET`|[`/api/v1/me/notifications`](https://www.reddit.com/dev/api/oauth#GET_api_v1_me_notifications)|None
 `PATCH`|[`/api/v1/me/notifications/{id}`](https://www.reddit.com/dev/api/oauth#PATCH_api_v1_me_notifications_%7Bid%7D)|None

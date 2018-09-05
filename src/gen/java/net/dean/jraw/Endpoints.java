@@ -44,10 +44,10 @@ public enum Endpoints {
     SENDREPLIES("POST /api/sendreplies", "edit"),
 
     ///////// flair /////////
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_flairselector">{@code POST /api/flairselector}</a>" included in the "flair" scope */
-    FLAIRSELECTOR("POST /api/flairselector", "flair"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_link_flair">{@code GET /api/link_flair}</a>" included in the "flair" scope */
     LINK_FLAIR("GET /api/link_flair", "flair"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_flairselector">{@code POST /api/flairselector}</a>" included in the "flair" scope */
+    FLAIRSELECTOR("POST /api/flairselector", "flair"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_selectflair">{@code POST /api/selectflair}</a>" included in the "flair" scope */
     SELECTFLAIR("POST /api/selectflair", "flair"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_setflairenabled">{@code POST /api/setflairenabled}</a>" included in the "flair" scope */
@@ -256,6 +256,8 @@ public enum Endpoints {
     ///////// privatemessages /////////
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_block">{@code POST /api/block}</a>" included in the "privatemessages" scope */
     BLOCK("POST /api/block", "privatemessages"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_del_msg">{@code POST /api/del_msg}</a>" included in the "privatemessages" scope */
+    DEL_MSG("POST /api/del_msg", "privatemessages"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_unblock_subreddit">{@code POST /api/unblock_subreddit}</a>" included in the "privatemessages" scope */
     UNBLOCK_SUBREDDIT("POST /api/unblock_subreddit", "privatemessages"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_v1_me_notifications">{@code GET /api/v1/me/notifications}</a>" included in the "privatemessages" scope */

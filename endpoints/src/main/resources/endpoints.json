@@ -144,6 +144,7 @@
     "privatemessages": [
         "POST /api/block",
         "POST /api/compose",
+        "POST /api/del_msg",
         "POST /api/read_all_messages",
         "POST /api/read_message",
         "POST /api/unblock_subreddit",
