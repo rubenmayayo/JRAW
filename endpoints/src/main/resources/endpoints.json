@@ -9,7 +9,8 @@
         "GET /captcha/{iden}"
     ],
     "account": [
-        "PATCH /api/v1/me/prefs"
+        "PATCH /api/v1/me/prefs",
+        "POST /api/block_user"
     ],
     "creddits": [
         "POST /api/v1/gold/gild/{fullname}",

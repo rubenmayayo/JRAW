@@ -1,9 +1,9 @@
-<!--- Generated 2018-09-05 at 20:19:06 CEST. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2018-09-05 at 21:30:28 CEST. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
 
-So far **144** endpoints (out of 224 total) have been implemented.
+So far **144** endpoints (out of 225 total) have been implemented.
 
 ##(any scope)
 Method|Endpoint|Implemention
@@ -19,6 +19,7 @@ Method|Endpoint|Implemention
 ##account
 Method|Endpoint|Implemention
 :----:|--------|------------
+`POST`|[`/api/block_user`](https://www.reddit.com/dev/api/oauth#POST_api_block_user)|None
 `PATCH`|[`/api/v1/me/prefs`](https://www.reddit.com/dev/api/oauth#PATCH_api_v1_me_prefs)|[`AccountManager.updatePreferences(AccountPreferencesEditor)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#updatePreferences(net.dean.jraw.AccountPreferencesEditor))
 
 ##creddits

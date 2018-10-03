@@ -22,6 +22,8 @@ public enum Endpoints {
     CAPTCHA_IDEN("GET /captcha/{iden}", "(any scope)"),
 
     ///////// account /////////
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_block_user">{@code POST /api/block_user}</a>" included in the "account" scope */
+    BLOCK_USER("POST /api/block_user", "account"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#PATCH_api_v1_me_prefs">{@code PATCH /api/v1/me/prefs}</a>" included in the "account" scope */
     OAUTH_ME_PREFS_PATCH("PATCH /api/v1/me/prefs", "account"),
 
