@@ -1,4 +1,4 @@
-<!--- Generated 2018-10-03 at 22:14:34 CEST. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2018-10-06 at 05:40:02 CEST. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
@@ -212,8 +212,8 @@ Method|Endpoint|Implemention
 :----:|--------|------------
 `GET`|[`/api/filter/{filterpath}`](https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D)|None
 `GET`|[`/api/filter/{filterpath}/r/{srname}`](https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D_r_%7Bsrname%7D)|None
-`POST`|[`/api/quarantine_opt_in`](https://www.reddit.com/dev/api/oauth#POST_api_quarantine_opt_in)|None
-`POST`|[`/api/quarantine_opt_out`](https://www.reddit.com/dev/api/oauth#POST_api_quarantine_opt_out)|None
+`POST`|[`/api/quarantine_optin`](https://www.reddit.com/dev/api/oauth#POST_api_quarantine_optin)|None
+`POST`|[`/api/quarantine_optout`](https://www.reddit.com/dev/api/oauth#POST_api_quarantine_optout)|None
 `GET`|[`/gilded`](https://www.reddit.com/dev/api/oauth#GET_gilded)|None
 `GET`|[`/related/{article}`](https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D)|None
 `GET`|[`/rules`](https://www.reddit.com/dev/api/oauth#GET_rules)|None

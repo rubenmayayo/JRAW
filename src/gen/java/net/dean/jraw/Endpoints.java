@@ -300,10 +300,10 @@ public enum Endpoints {
     FILTER_FILTERPATH_GET("GET /api/filter/{filterpath}", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_filter_%7Bfilterpath%7D_r_%7Bsrname%7D">{@code GET /api/filter/{filterpath}/r/{srname}}</a>" included in the "read" scope */
     FILTER_FILTERPATH_R_SRNAME_GET("GET /api/filter/{filterpath}/r/{srname}", "read"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_quarantine_opt_in">{@code POST /api/quarantine_opt_in}</a>" included in the "read" scope */
-    QUARANTINE_OPT_IN("POST /api/quarantine_opt_in", "read"),
-    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_quarantine_opt_out">{@code POST /api/quarantine_opt_out}</a>" included in the "read" scope */
-    QUARANTINE_OPT_OUT("POST /api/quarantine_opt_out", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_quarantine_optin">{@code POST /api/quarantine_optin}</a>" included in the "read" scope */
+    QUARANTINE_OPTIN("POST /api/quarantine_optin", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_quarantine_optout">{@code POST /api/quarantine_optout}</a>" included in the "read" scope */
+    QUARANTINE_OPTOUT("POST /api/quarantine_optout", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_gilded">{@code GET /gilded}</a>" included in the "read" scope */
     GILDED("GET /gilded", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D">{@code GET /related/{article}}</a>" included in the "read" scope */
