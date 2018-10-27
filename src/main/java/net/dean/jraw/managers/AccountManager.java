@@ -344,6 +344,24 @@ public class AccountManager extends AbstractManager {
     }
 
     /**
+     * Gets a list of possible user flair templates for this subreddit. See also: {@link #getFlairChoices(Submission)},
+     * {@link #getCurrentFlair(String)}, {@link #getCurrentFlair(Submission)}
+     *
+     * @param subreddit The subreddit to look up
+     * @return A list of flair templates
+     * @throws NetworkException If the request was not successful
+     * @throws ApiException If the Reddit API returned an error
+     */
+    public List<FlairTemplate> getFlairUserChoices(String subreddit) throws NetworkException, ApiException {
+        ImmutableList.Builder<FlairTemplate> templates = ImmutableList.builder();
+        for (JsonNode choiceNode : getFlairUserChoicesRootNode(subreddit)) {
+            templates.add(new FlairTemplate(choiceNode));
+        }
+
+        return templates.build();
+    }
+
+    /**
      * Gets the current user flair for this subreddit
      * @param subreddit The subreddit to look up
      * @return The flair template that is being used by the authenticated user
@@ -563,9 +581,17 @@ public class AccountManager extends AbstractManager {
         return response.getJson();
     }
 
+    private JsonNode getFlairUserChoicesRootNode(String subreddit) throws NetworkException, ApiException {
+        RestResponse response = reddit.execute(reddit.request()
+                .path("/r/" + subreddit + Endpoints.USER_FLAIR_V2.getEndpoint().getUri())
+                .query()
+                .build());
+        return response.getJson();
+    }
+
     private JsonNode getFlairLinkChoicesRootNode(String subreddit) throws NetworkException, ApiException {
         RestResponse response = reddit.execute(reddit.request()
-                .path("/r/" + subreddit + Endpoints.LINK_FLAIR.getEndpoint().getUri())
+                .path("/r/" + subreddit + Endpoints.LINK_FLAIR_V2.getEndpoint().getUri())
                 .query()
                 .build());
         return response.getJson();

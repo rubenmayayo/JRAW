@@ -27,7 +27,10 @@
         "POST /api/flairselector",
         "POST /api/selectflair",
         "GET /api/link_flair",
-        "POST /api/setflairenabled"
+        "GET /api/link_flair_v2",
+        "POST /api/setflairenabled",
+        "GET /api/user_flair",
+        "GET /api/user_flair_v2"
     ],
     "history": [
         "GET /user/{username}/comments",

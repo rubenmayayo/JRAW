@@ -48,6 +48,12 @@ public enum Endpoints {
     ///////// flair /////////
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_link_flair">{@code GET /api/link_flair}</a>" included in the "flair" scope */
     LINK_FLAIR("GET /api/link_flair", "flair"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_link_flair_v2">{@code GET /api/link_flair_v2}</a>" included in the "flair" scope */
+    LINK_FLAIR_V2("GET /api/link_flair_v2", "flair"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_user_flair">{@code GET /api/user_flair}</a>" included in the "flair" scope */
+    USER_FLAIR("GET /api/user_flair", "flair"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_user_flair_v2">{@code GET /api/user_flair_v2}</a>" included in the "flair" scope */
+    USER_FLAIR_V2("GET /api/user_flair_v2", "flair"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_flairselector">{@code POST /api/flairselector}</a>" included in the "flair" scope */
     FLAIRSELECTOR("POST /api/flairselector", "flair"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_selectflair">{@code POST /api/selectflair}</a>" included in the "flair" scope */

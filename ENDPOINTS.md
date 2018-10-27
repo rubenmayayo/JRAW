@@ -1,9 +1,9 @@
-<!--- Generated 2018-10-06 at 05:40:02 CEST. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2018-10-28 at 00:48:57 CEST. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
 
-So far **144** endpoints (out of 227 total) have been implemented.
+So far **144** endpoints (out of 230 total) have been implemented.
 
 ##(any scope)
 Method|Endpoint|Implemention
@@ -41,6 +41,9 @@ Method|Endpoint|Implemention
 Method|Endpoint|Implemention
 :----:|--------|------------
 `GET`|[`/api/link_flair`](https://www.reddit.com/dev/api/oauth#GET_api_link_flair)|None
+`GET`|[`/api/link_flair_v2`](https://www.reddit.com/dev/api/oauth#GET_api_link_flair_v2)|None
+`GET`|[`/api/user_flair`](https://www.reddit.com/dev/api/oauth#GET_api_user_flair)|None
+`GET`|[`/api/user_flair_v2`](https://www.reddit.com/dev/api/oauth#GET_api_user_flair_v2)|None
 `POST`|[`/api/flairselector`](https://www.reddit.com/dev/api/oauth#POST_api_flairselector)|[`AccountManager.getFlairChoices(String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#getFlairChoices(java.lang.String))
 `POST`|[`/api/selectflair`](https://www.reddit.com/dev/api/oauth#POST_api_selectflair)|[`ModerationManager.setFlair(String, FlairTemplate, String, Submission, String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/ModerationManager.html#setFlair(java.lang.String, net.dean.jraw.models.FlairTemplate, java.lang.String, net.dean.jraw.models.Submission, java.lang.String))
 `POST`|[`/api/setflairenabled`](https://www.reddit.com/dev/api/oauth#POST_api_setflairenabled)|[`AccountManager.setFlairEnabled(String, boolean)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#setFlairEnabled(java.lang.String, boolean))
