@@ -78,9 +78,11 @@ public class AccountManager extends AbstractManager {
                 "title", b.title
         );
 
-        if (b.flairTemplate != null) {
-            args.put("flair_id", b.flairTemplate.data("id"));
-            args.put("flair_text", b.flairTemplate.data("text"));
+        if (b.flairId != null && !b.flairId.isEmpty()) {
+            args.put("flair_id", b.flairId);
+            if (b.flairText != null && !b.flairText.isEmpty()) {
+                args.put("flair_text", b.flairText);
+            }
         }
 
         if (b.selfPost) {
@@ -611,7 +613,8 @@ public class AccountManager extends AbstractManager {
         private boolean resubmit = true;
         private boolean nsfw; // = false;
         private boolean spoiler; // = false;
-        private FlairTemplate flairTemplate;
+        private String flairId;
+        private String flairText;
         private String crosspostFullName;
 
         /**
@@ -684,11 +687,13 @@ public class AccountManager extends AbstractManager {
 
         /**
          * Whether to set a flair
-         * @param flairTemplate The flair to set
+         * @param flairId The flair id to set
+         * @param flairText The flair text to set
          * @return This builder
          */
-        public SubmissionBuilder setFlair(FlairTemplate flairTemplate) {
-            this.flairTemplate = flairTemplate;
+        public SubmissionBuilder setFlair(String flairId, String flairText) {
+            this.flairId = flairId;
+            this.flairText = flairText;
             return this;
         }
 
