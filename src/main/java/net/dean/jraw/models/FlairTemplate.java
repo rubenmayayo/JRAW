@@ -25,17 +25,17 @@ public final class FlairTemplate extends JsonModel {
      */
     @JsonProperty(nullable = true)
     public String getId() {
-        return flairData("template_id");
+        return flairData("id");
     }
 
     /** Checks if the template's text can be changed by the user. */
     @JsonProperty
     public Boolean isTextEditable() {
-        if (!data.has("flair_text_editable")) {
+        if (!data.has("text_editable")) {
             return false;
         }
 
-        return data("flair_text_editable", Boolean.class);
+        return data("text_editable", Boolean.class);
     }
 
     /** Where the flair will appear relative to the title/username: Either "left" or "right" */
@@ -51,6 +51,6 @@ public final class FlairTemplate extends JsonModel {
     }
 
     private String flairData(String key) {
-        return data("flair_" + key);
+        return data(key);
     }
 }
