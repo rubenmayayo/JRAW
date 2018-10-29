@@ -310,6 +310,8 @@ public enum Endpoints {
     QUARANTINE_OPTIN("POST /api/quarantine_optin", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_quarantine_optout">{@code POST /api/quarantine_optout}</a>" included in the "read" scope */
     QUARANTINE_OPTOUT("POST /api/quarantine_optout", "read"),
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_v1_%7Bsubreddit%7D_emojis_all">{@code GET /api/v1/{subreddit}/emojis/all}</a>" included in the "read" scope */
+    OAUTH_SUBREDDIT_EMOJIS_ALL("GET /api/v1/{subreddit}/emojis/all", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_gilded">{@code GET /gilded}</a>" included in the "read" scope */
     GILDED("GET /gilded", "read"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_related_%7Barticle%7D">{@code GET /related/{article}}</a>" included in the "read" scope */

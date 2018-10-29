@@ -234,7 +234,8 @@
         "GET /users/{where}",
         "GET /top",
         "GET /user/{username}/about",
-        "GET /{sort}"
+        "GET /{sort}",
+        "GET /api/v1/{subreddit}/emojis/all"
     ],
     "report": [
         "POST /api/hide",
