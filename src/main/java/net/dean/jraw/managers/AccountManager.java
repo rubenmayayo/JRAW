@@ -67,7 +67,7 @@ public class AccountManager extends AbstractManager {
         Map<String, String> args = JrawUtils.mapOf(
                 "api_type", "json",
                 "extension", "json",
-                "kind", b.selfPost ? "self" : "link",
+                "kind", b.kind.name().toLowerCase(),
                 "resubmit", b.resubmit,
                 "save", b.saveAfter,
                 "sendreplies", b.sendRepliesToInbox,
@@ -85,7 +85,7 @@ public class AccountManager extends AbstractManager {
             }
         }
 
-        if (b.selfPost) {
+        if (b.kind == SubmissionKind.SELF) {
             args.put("text", b.selfText);
         } else {
             args.put("url", b.url.toExternalForm());
@@ -600,10 +600,21 @@ public class AccountManager extends AbstractManager {
     }
 
     /**
+     * Type of submissions
+     */
+    public enum SubmissionKind {
+        SELF,
+        LINK,
+        IMAGE,
+        VIDEO,
+        VIDEOGIF
+    }
+
+    /**
      * This class provides a way to configure posting parameters of a new submission
      */
     public static class SubmissionBuilder {
-        private final boolean selfPost;
+        private SubmissionKind kind;
         private final String selfText;
         private final URL url;
         private final String subreddit;
@@ -624,7 +635,7 @@ public class AccountManager extends AbstractManager {
          * @param title The title of the submission
          */
         public SubmissionBuilder(String selfText, String subreddit, String title) {
-            this.selfPost = true;
+            this.kind = SubmissionKind.SELF;
             this.selfText = selfText;
             this.url = null;
             this.subreddit = subreddit;
@@ -637,8 +648,8 @@ public class AccountManager extends AbstractManager {
          * @param subreddit The subreddit to submit the link to (e.g. "funny", "pics", etc.)
          * @param title The title of the submission
          */
-        public SubmissionBuilder(URL url, String subreddit, String title) {
-            this.selfPost = false;
+        public SubmissionBuilder(URL url, String subreddit, String title, SubmissionKind kind) {
+            this.kind = kind;
             this.url = url;
             this.selfText = null;
             this.subreddit = subreddit;
