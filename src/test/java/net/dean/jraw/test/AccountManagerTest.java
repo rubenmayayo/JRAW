@@ -3,6 +3,7 @@ package net.dean.jraw.test;
 import net.dean.jraw.AccountPreferencesEditor;
 import net.dean.jraw.ApiException;
 import net.dean.jraw.managers.CaptchaHelper;
+import net.dean.jraw.managers.SubmissionKind;
 import net.dean.jraw.util.JrawUtils;
 import net.dean.jraw.http.NetworkException;
 import net.dean.jraw.managers.AccountManager;
@@ -48,7 +49,7 @@ public class AccountManagerTest extends RedditTest {
             URL url = JrawUtils.newUrl("https://www." + number + ".com");
 
             Submission submission = account.submit(
-                    new AccountManager.SubmissionBuilder(url, "jraw_testing2", "Link post test (epoch=" + number + ")"));
+                    new AccountManager.SubmissionBuilder(url, "jraw_testing2", "Link post test (epoch=" + number + ")", SubmissionKind.LINK));
 
             assertTrue(!submission.isSelfPost());
             assertTrue(submission.getUrl().equals(url.toExternalForm()));

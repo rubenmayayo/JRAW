@@ -600,17 +600,6 @@ public class AccountManager extends AbstractManager {
     }
 
     /**
-     * Type of submissions
-     */
-    public enum SubmissionKind {
-        SELF,
-        LINK,
-        IMAGE,
-        VIDEO,
-        VIDEOGIF
-    }
-
-    /**
      * This class provides a way to configure posting parameters of a new submission
      */
     public static class SubmissionBuilder {

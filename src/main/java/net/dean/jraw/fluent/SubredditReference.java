@@ -3,6 +3,7 @@ package net.dean.jraw.fluent;
 import net.dean.jraw.ApiException;
 import net.dean.jraw.http.NetworkException;
 import net.dean.jraw.managers.AccountManager;
+import net.dean.jraw.managers.SubmissionKind;
 import net.dean.jraw.models.Submission;
 import net.dean.jraw.models.Subreddit;
 import net.dean.jraw.paginators.SubredditPaginator;
@@ -58,7 +59,7 @@ public final class SubredditReference extends PaginatorWrapper<Submission, Subre
     @NetworkingCall
     public Submission submit(URL url, String title) throws ApiException {
         checkNotFrontPage();
-        return managers.account().submit(new AccountManager.SubmissionBuilder(url, subreddit, title));
+        return managers.account().submit(new AccountManager.SubmissionBuilder(url, subreddit, title, SubmissionKind.LINK));
     }
 
     /** Creates a self-post submission. Returns the newly created submission. */
