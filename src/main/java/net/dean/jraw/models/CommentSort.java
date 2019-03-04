@@ -7,8 +7,9 @@ public enum CommentSort {
     CONFIDENCE,
     TOP,
     NEW,
-    HOT,
     CONTROVERSIAL,
     OLD,
-    QA
+    RANDOM,
+    QA,
+    LIVE
 }
