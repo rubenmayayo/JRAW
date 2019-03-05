@@ -64,6 +64,22 @@ public class AccountManager extends AbstractManager {
      */
     @EndpointImplementation(Endpoints.SUBMIT)
     public Submission submit(SubmissionBuilder b, Captcha captcha, String captchaAttempt) throws NetworkException, ApiException {
+        RestResponse response = submitRaw(b, captcha, captchaAttempt);
+        return reddit.getSubmission(response.getJson().get("json").get("data").get("id").asText());
+    }
+
+    /**
+     * Submits a new link with a given captcha. Only really needed if the user has less than 10 link karma.
+     *
+     * @param b The SubmissionBuilder to gather data from
+     * @param captcha The Captcha the user is attempting
+     * @param captchaAttempt The user's guess at the captcha
+     * @return A representation of the newly submitted Submission
+     * @throws NetworkException If the request was not successful
+     * @throws ApiException If the API returned an error
+     */
+    @EndpointImplementation(Endpoints.SUBMIT)
+    public RestResponse submitRaw(SubmissionBuilder b, Captcha captcha, String captchaAttempt) throws NetworkException, ApiException {
         Map<String, String> args = JrawUtils.mapOf(
                 "api_type", "json",
                 "extension", "json",
@@ -109,7 +125,9 @@ public class AccountManager extends AbstractManager {
                 .endpoint(Endpoints.SUBMIT)
                 .post(args)
                 .build());
-        return reddit.getSubmission(response.getJson().get("json").get("data").get("id").asText());
+
+        return response;
+
     }
 
     /**
