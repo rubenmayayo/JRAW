@@ -107,6 +107,10 @@ public class AccountManager extends AbstractManager {
             args.put("url", b.url.toExternalForm());
         }
 
+        if (b.videoPosterUrl != null) {
+            args.put("video_poster_url", b.videoPosterUrl.toExternalForm());
+        }
+
         if (b.crosspostFullName != null && !b.crosspostFullName.isEmpty()) {
             args.put("kind", "crosspost");
             args.put("crosspost_fullname", b.crosspostFullName);
@@ -634,6 +638,7 @@ public class AccountManager extends AbstractManager {
         private String flairId;
         private String flairText;
         private String crosspostFullName;
+        private URL videoPosterUrl;
 
         /**
          * Instantiates a new SubmissionBuilder that will result in a self post.
@@ -661,6 +666,21 @@ public class AccountManager extends AbstractManager {
             this.selfText = null;
             this.subreddit = subreddit;
             this.title = title;
+        }
+
+        /**
+         * Instantiates a new SubmissionBuilder that will result in a video or videogif post.
+         * @param url The URL that this submission will link to
+         * @param subreddit The subreddit to submit the link to (e.g. "funny", "pics", etc.)
+         * @param title The title of the submission
+         */
+        public SubmissionBuilder(URL url, String subreddit, String title, URL videoPosterUrl, SubmissionKind kind) {
+            this.kind = kind;
+            this.url = url;
+            this.selfText = null;
+            this.subreddit = subreddit;
+            this.title = title;
+            this.videoPosterUrl = videoPosterUrl;
         }
 
         /**
@@ -732,6 +752,17 @@ public class AccountManager extends AbstractManager {
          */
         public SubmissionBuilder resubmit(boolean flag) {
             this.resubmit = flag;
+            return this;
+        }
+
+        /**
+         * The path to an image, to be uploaded and used as the thumbnail for this video.
+         * If not provided, the Boost logo will be used as the thumbnail.
+         * @param videoPosterUrl A valid url to video thumbnail
+         * @return This builder
+         */
+        public SubmissionBuilder setVideoPosterUrl(URL videoPosterUrl) {
+            this.videoPosterUrl = videoPosterUrl;
             return this;
         }
     }
