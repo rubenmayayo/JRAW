@@ -127,10 +127,10 @@ public class MultiRedditManager extends AbstractManager {
      *                          case the authenticated user already has a multireddit of that name.
      * @throws ApiException If the Reddit API returned an error
      */
-    public void copy(String sourceName, String destName) throws NetworkException, ApiException {
+    public void copy(String sourceName, String destName, String displayName, String description) throws NetworkException, ApiException {
         if (!reddit.hasActiveUserContext())
             throw new IllegalStateException("Cannot set the flair for self because there is no active user context");
-        copy(reddit.getAuthenticatedUser(), sourceName, destName);
+        copy(reddit.getAuthenticatedUser(), sourceName, destName, displayName, description);
     }
 
     /**
@@ -144,14 +144,16 @@ public class MultiRedditManager extends AbstractManager {
      * @throws ApiException If the Reddit API returned an error
      */
     @EndpointImplementation(Endpoints.MULTI_COPY)
-    public void copy(String sourceOwner, String sourceMulti, String destName) throws NetworkException, ApiException {
+    public void copy(String sourceOwner, String sourceMulti, String destName, String displayName, String description) throws NetworkException, ApiException {
         String from = getMultiPath(sourceOwner, sourceMulti);
         String to = getMultiPath(destName);
         HttpRequest request = reddit.request()
                 .endpoint(Endpoints.MULTI_COPY)
                 .post(JrawUtils.mapOf(
                         "from", from,
-                        "to", to
+                        "to", to,
+                        "display_name", displayName,
+                        "description_md", description
                 )).build();
 
         RestResponse response = reddit.execute(request);

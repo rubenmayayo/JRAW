@@ -143,7 +143,7 @@ public class MultiRedditTest extends RedditTest {
         }
 
         try {
-            manager.copy(MULTI_NAME, newName);
+            manager.copy(MULTI_NAME, newName, newName, "");
             assertTrue(multiExists(newName));
         } catch (NetworkException | ApiException e) {
             handle(e);
