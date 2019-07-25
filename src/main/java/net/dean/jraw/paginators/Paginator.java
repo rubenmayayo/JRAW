@@ -42,6 +42,8 @@ public abstract class Paginator<T extends Thing> implements RedditIterable<T> {
     private boolean started;
     private boolean changed;
 
+    private boolean includeDetails;
+
     /**
      * Instantiates a new Paginator
      *
@@ -58,6 +60,7 @@ public abstract class Paginator<T extends Thing> implements RedditIterable<T> {
         this.started = false;
         this.includeLimit = false;
         this.iterator = new ListingIterator();
+        this.includeDetails = false;
     }
 
     @Override
@@ -83,6 +86,9 @@ public abstract class Paginator<T extends Thing> implements RedditIterable<T> {
             args.put("limit", String.valueOf(limit));
         if (current != null && current.getAfter() != null)
             args.put("after", current.getAfter());
+        if (includeDetails) {
+            args.put("sr_detail", "true");
+        }
 
         String sorting = getSortingString();
         boolean sortingUsed = sorting != null;
@@ -227,6 +233,14 @@ public abstract class Paginator<T extends Thing> implements RedditIterable<T> {
         this.limit = limit;
         this.includeLimit = true;
         invalidate();
+    }
+
+    /**
+     * Set to return subreddit details (Used only in submission paginators)
+     * @param includeDetails
+     */
+    public void setIncludeDetails(boolean includeDetails) {
+        this.includeDetails = includeDetails;
     }
 
     /**
