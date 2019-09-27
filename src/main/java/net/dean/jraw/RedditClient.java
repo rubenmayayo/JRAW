@@ -276,6 +276,9 @@ public class RedditClient extends RestClient {
             args.put("limit", Integer.toString(request.getLimit()));
         if (request.getFocus() != null && !JrawUtils.isFullname(request.getFocus()))
             args.put("comment", request.getFocus());
+        if (request.getSrDetails()) {
+            args.put("sr_detail", "true");
+        }
 
         CommentSort sort = request.getSort();
         if (sort == null)

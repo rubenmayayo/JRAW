@@ -14,6 +14,7 @@ public class SubmissionRequest {
     private final Integer context;
     private final CommentSort sort;
     private final String focus;
+    private final boolean srDetails;
 
     /** Creates a SubmissionRequest who only specifies the link's ID. */
     public SubmissionRequest(String id) {
@@ -27,6 +28,7 @@ public class SubmissionRequest {
         this.context = b.context;
         this.sort = b.sort;
         this.focus = b.focus;
+        this.srDetails = b.srDetails;
     }
 
     public String getId() {
@@ -53,6 +55,10 @@ public class SubmissionRequest {
         return focus;
     }
 
+    public boolean getSrDetails() {
+        return srDetails;
+    }
+
     public static class Builder {
         private final String id;
         private Integer depth;
@@ -60,6 +66,7 @@ public class SubmissionRequest {
         private Integer context;
         private CommentSort sort;
         private String focus;
+        private boolean srDetails;
 
         /**
          * Instantiates a new Builder
@@ -116,6 +123,14 @@ public class SubmissionRequest {
          */
         public Builder focus(String commentId) {
             this.focus = commentId;
+            return this;
+        }
+
+        /**
+         * Sets to request the subreddit details with the submission.
+         */
+        public Builder srDetails(boolean srDetails) {
+            this.srDetails = srDetails;
             return this;
         }
 
