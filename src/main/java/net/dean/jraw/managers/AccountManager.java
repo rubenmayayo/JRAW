@@ -91,6 +91,7 @@ public class AccountManager extends AbstractManager {
                 "spoiler", b.spoiler,
                 "sr", b.subreddit,
                 "then", "comments",
+                "validate_on_submit", true,
                 "title", b.title
         );
 
@@ -250,6 +251,7 @@ public class AccountManager extends AbstractManager {
                 .post(JrawUtils.mapOf(
                         "api_type", "json",
                         "text", text,
+                        "validate_on_submit", true,
                         "thing_id", contribution.getFullName()
                 )).build());
     }
