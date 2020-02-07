@@ -460,6 +460,8 @@ public enum Endpoints {
     UNSAVE("POST /api/unsave", "save"),
 
     ///////// submit /////////
+    /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#GET_api_v1_%7Bsubreddit%7D_post_requirements">{@code GET /api/v1/{subreddit}/post_requirements}</a>" included in the "submit" scope */
+    OAUTH_SUBREDDIT_POST_REQUIREMENTS("GET /api/v1/{subreddit}/post_requirements", "submit"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_live_create">{@code POST /api/live/create}</a>" included in the "submit" scope */
     LIVE_CREATE("POST /api/live/create", "submit"),
     /** Represents the endpoint "<a href="https://www.reddit.com/dev/api/oauth#POST_api_live_%7Bthread%7D_update">{@code POST /api/live/{thread}/update}</a>" included in the "submit" scope */

@@ -253,7 +253,8 @@
         "POST /api/live/create",
         "POST /api/live/{thread}/update",
         "POST /api/submit",
-        "GET /api/submit_text"
+        "GET /api/submit_text",
+        "GET /api/v1/{subreddit}/post_requirements"
     ],
     "subscribe": [
         "DELETE /api/filter/{filterpath}",

@@ -1,9 +1,9 @@
-<!--- Generated 2019-03-02 at 23:04:43 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2020-02-07 at 19:26:48 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
 
-So far **144** endpoints (out of 231 total) have been implemented.
+So far **144** endpoints (out of 232 total) have been implemented.
 
 ##(any scope)
 Method|Endpoint|Implemention
@@ -301,6 +301,7 @@ Method|Endpoint|Implemention
 ##submit
 Method|Endpoint|Implemention
 :----:|--------|------------
+`GET`|[`/api/v1/{subreddit}/post_requirements`](https://www.reddit.com/dev/api/oauth#GET_api_v1_%7Bsubreddit%7D_post_requirements)|None
 `POST`|[`/api/live/create`](https://www.reddit.com/dev/api/oauth#POST_api_live_create)|[`LiveThreadManager.create(String, boolean, String, String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/LiveThreadManager.html#create(java.lang.String, boolean, java.lang.String, java.lang.String))
 `POST`|[`/api/live/{thread}/update`](https://www.reddit.com/dev/api/oauth#POST_api_live_%7Bthread%7D_update)|[`LiveThreadManager.postUpdate(LiveThread, String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/LiveThreadManager.html#postUpdate(net.dean.jraw.models.LiveThread, java.lang.String))
 `POST`|[`/api/submit`](https://www.reddit.com/dev/api/oauth#POST_api_submit)|[`AccountManager.submit(SubmissionBuilder, Captcha, String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/AccountManager.html#submit(net.dean.jraw.managers.AccountManager$SubmissionBuilder, net.dean.jraw.models.Captcha, java.lang.String))
