@@ -116,6 +116,10 @@ public class AccountManager extends AbstractManager {
             args.put("crosspost_fullname", b.crosspostFullName);
         }
 
+        if (b.validateOnSubmit) {
+            args.put("validate_on_submit", "true");
+        }
+
         if (captcha != null) {
             if (captchaAttempt == null) {
                 throw new IllegalArgumentException("Captcha present but the attempt is not");
@@ -639,6 +643,7 @@ public class AccountManager extends AbstractManager {
         private String flairText;
         private String crosspostFullName;
         private URL videoPosterUrl;
+        private boolean validateOnSubmit;
 
         /**
          * Instantiates a new SubmissionBuilder that will result in a self post.
@@ -763,6 +768,17 @@ public class AccountManager extends AbstractManager {
          */
         public SubmissionBuilder setVideoPosterUrl(URL videoPosterUrl) {
             this.videoPosterUrl = videoPosterUrl;
+            return this;
+        }
+
+        /**
+         * For testing purposes of this upcoming change:
+         * https://www.reddit.com/r/redditdev/comments/ezz3td/upcoming_api_change_post_apisubmit/
+         * @param validateOnSubmit If there should validate on submit
+         * @return This builder
+         */
+        public SubmissionBuilder setValidateOnSubmit(boolean validateOnSubmit) {
+            this.validateOnSubmit = validateOnSubmit;
             return this;
         }
     }
