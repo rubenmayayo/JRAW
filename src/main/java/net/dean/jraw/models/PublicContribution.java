@@ -85,4 +85,24 @@ public abstract class PublicContribution extends Contribution implements Disting
     public String getRemovalReason() {
         return data("removal_reason");
     }
+
+    /**
+     * Gets the awards of this contribution
+     */
+    @JsonProperty
+    public Award[] getAwards() {
+        String key = "all_awardings";
+        if (!data.has(key) || data.get(key).isNull()) {
+            return new Award[]{};
+        }
+
+        JsonNode node = data.get(key);
+
+        Award[] arr = new Award[node.size()];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = new Award(node.get(i));
+        }
+
+        return arr;
+    }
 }
