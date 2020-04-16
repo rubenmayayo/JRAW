@@ -90,6 +90,9 @@ public abstract class Paginator<T extends Thing> implements RedditIterable<T> {
             args.put("sr_detail", "true");
         }
 
+        // Force always show media
+        args.put("always_show_media", "1");
+
         String sorting = getSortingString();
         boolean sortingUsed = sorting != null;
 
