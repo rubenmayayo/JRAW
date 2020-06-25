@@ -142,7 +142,7 @@ public class SubmissionRequest {
         }
 
         /**
-         * Sets to request the profile picutres with the comments.
+         * Sets to request the profile pictures with the comments.
          */
         public Builder profileImg(boolean profileImg) {
             this.profileImg = profileImg;
