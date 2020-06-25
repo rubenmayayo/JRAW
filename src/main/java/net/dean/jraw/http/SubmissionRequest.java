@@ -15,6 +15,7 @@ public class SubmissionRequest {
     private final CommentSort sort;
     private final String focus;
     private final boolean srDetails;
+    private final boolean profileImg;
 
     /** Creates a SubmissionRequest who only specifies the link's ID. */
     public SubmissionRequest(String id) {
@@ -29,6 +30,7 @@ public class SubmissionRequest {
         this.sort = b.sort;
         this.focus = b.focus;
         this.srDetails = b.srDetails;
+        this.profileImg = b.profileImg;
     }
 
     public String getId() {
@@ -59,6 +61,10 @@ public class SubmissionRequest {
         return srDetails;
     }
 
+    public boolean getProfileImg() {
+        return profileImg;
+    }
+
     public static class Builder {
         private final String id;
         private Integer depth;
@@ -67,6 +73,7 @@ public class SubmissionRequest {
         private CommentSort sort;
         private String focus;
         private boolean srDetails;
+        private boolean profileImg;
 
         /**
          * Instantiates a new Builder
@@ -131,6 +138,14 @@ public class SubmissionRequest {
          */
         public Builder srDetails(boolean srDetails) {
             this.srDetails = srDetails;
+            return this;
+        }
+
+        /**
+         * Sets to request the profile picutres with the comments.
+         */
+        public Builder profileImg(boolean profileImg) {
+            this.profileImg = profileImg;
             return this;
         }
 

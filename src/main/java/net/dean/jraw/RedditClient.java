@@ -279,6 +279,9 @@ public class RedditClient extends RestClient {
         if (request.getSrDetails()) {
             args.put("sr_detail", "true");
         }
+        if (request.getProfileImg()) {
+            args.put("profile_img", "true");
+        }
 
         CommentSort sort = request.getSort();
         if (sort == null)
