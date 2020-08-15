@@ -282,6 +282,7 @@ public class RedditClient extends RestClient {
         if (request.getProfileImg()) {
             args.put("profile_img", "true");
         }
+        args.put("always_show_media", "1");
 
         CommentSort sort = request.getSort();
         if (sort == null)
