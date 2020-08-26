@@ -309,13 +309,20 @@ public class AccountManager extends AbstractManager {
      * @throws NetworkException If the request was not successful
      */
     private void setSubscribed(Subreddit subreddit, boolean sub) throws NetworkException {
+
+        Map<String, String> args = JrawUtils.mapOf(
+                "sr", subreddit.getFullName(),
+                "action", sub ? "sub" : "unsub");
+
+        if (sub) {
+            args.put("skip_initial_defaults", "true");
+        }
+
         reddit.execute(reddit.request()
                 .endpoint(Endpoints.SUBSCRIBE)
-                .post(JrawUtils.mapOf(
-                        "sr", subreddit.getFullName(),
-                        "action", sub ? "sub" : "unsub"
-                        // JSON is returned on subscribe, HTML is returned on unsubscribe
-                )).build());
+                .post(args)
+                // JSON is returned on subscribe, HTML is returned on unsubscribe
+                .build());
     }
 
     /**
