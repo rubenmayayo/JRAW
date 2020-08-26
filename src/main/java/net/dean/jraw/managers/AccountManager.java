@@ -313,6 +313,7 @@ public class AccountManager extends AbstractManager {
                 .endpoint(Endpoints.SUBSCRIBE)
                 .post(JrawUtils.mapOf(
                         "sr", subreddit.getFullName(),
+                        "skip_initial_defaults", "true",
                         "action", sub ? "sub" : "unsub"
                         // JSON is returned on subscribe, HTML is returned on unsubscribe
                 )).build());
