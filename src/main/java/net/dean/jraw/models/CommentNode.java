@@ -352,6 +352,7 @@ public final class CommentNode implements Iterable<CommentNode> {
         String id = ownerId.substring("t3_".length());
         CommentNode newNode = reddit.getSubmission(new SubmissionRequest.Builder(id)
                 .focus(getComment().getId())
+                .profileImg(true)
                 .build()).getComments();
         this.moreChildren = null;
 
@@ -422,6 +423,7 @@ public final class CommentNode implements Iterable<CommentNode> {
                     .post(JrawUtils.mapOf(
                             "children", ids.toString(),
                             "link_id", ownerId,
+                            "profile_img", "true",
                             "sort", commentSort.name().toLowerCase(),
                             "api_type", "json"
                     )).build());
