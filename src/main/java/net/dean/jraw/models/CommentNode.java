@@ -254,7 +254,7 @@ public final class CommentNode implements Iterable<CommentNode> {
     }
 
     /**
-     * Gets more comments from {@link #getMoreComments(RedditClient)} and inserts them into the tree. This method
+     * Gets more comments from {@link #getMoreComments(RedditClient, boolean)} and inserts them into the tree. This method
      * returns only new <em>root</em> nodes. If this CommentNode is not associated with a {@link MoreChildren}, then an
      * empty list is returned. A null value is never returned.
      *
@@ -263,16 +263,20 @@ public final class CommentNode implements Iterable<CommentNode> {
      * @throws NetworkException If the request was not successful
      */
     public List<CommentNode> loadMoreComments(RedditClient reddit) throws NetworkException {
+        return loadMoreComments(reddit, false);
+    }
+
+    public List<CommentNode> loadMoreComments(RedditClient reddit, boolean profileImg) throws NetworkException {
         if (!hasMoreComments())
             // Nothing to do
             return new ArrayList<>();
 
         if (isThreadContinuation())
-            return continueThread(reddit);
+            return continueThread(reddit, profileImg);
 
         int relativeRootDepth = depth + 1;
         List<CommentNode> newRootNodes = new ArrayList<>();
-        List<Thing> thingsToAdd = getMoreComments(reddit);
+        List<Thing> thingsToAdd = getMoreComments(reddit, profileImg);
         this.moreChildren = null;
 
         List<Comment> newComments = new ArrayList<>();
@@ -342,7 +346,7 @@ public final class CommentNode implements Iterable<CommentNode> {
         return newRootNodes;
     }
 
-    private List<CommentNode> continueThread(RedditClient reddit) {
+    private List<CommentNode> continueThread(RedditClient reddit, boolean profileImg) {
         if (!isThreadContinuation())
             throw new IllegalArgumentException("This CommentNode's MoreChildren is not a thread continuation");
         if (!hasMoreComments())
@@ -352,7 +356,7 @@ public final class CommentNode implements Iterable<CommentNode> {
         String id = ownerId.substring("t3_".length());
         CommentNode newNode = reddit.getSubmission(new SubmissionRequest.Builder(id)
                 .focus(getComment().getId())
-                .profileImg(true)
+                .profileImg(profileImg)
                 .build()).getComments();
         this.moreChildren = null;
 
@@ -395,11 +399,12 @@ public final class CommentNode implements Iterable<CommentNode> {
      * tree, use {@link #loadMoreComments(RedditClient)} instead.
      *
      * @param reddit The RedditClient to make the HTTP request with
+     * @param profileImg to include profile images in comment data
      * @return A list of new Comments and MoreChildren objects
      * @throws NetworkException If the request was not successful
      */
     @EndpointImplementation(Endpoints.MORECHILDREN)
-    public List<Thing> getMoreComments(RedditClient reddit)
+    public List<Thing> getMoreComments(RedditClient reddit, boolean profileImg)
             throws NetworkException {
         if (!hasMoreComments())
             return new ArrayList<>();
@@ -423,7 +428,7 @@ public final class CommentNode implements Iterable<CommentNode> {
                     .post(JrawUtils.mapOf(
                             "children", ids.toString(),
                             "link_id", ownerId,
-                            "profile_img", "true",
+                            "profile_img", profileImg,
                             "sort", commentSort.name().toLowerCase(),
                             "api_type", "json"
                     )).build());
