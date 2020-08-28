@@ -423,15 +423,21 @@ public final class CommentNode implements Iterable<CommentNode> {
         // error being returned."
         morechildrenLock.lock();
         try {
+
+            Map<String, String> args = JrawUtils.mapOf(
+                    "children", ids.toString(),
+                    "link_id", ownerId,
+                    "sort", commentSort.name().toLowerCase(),
+                    "api_type", "json");
+
+            if (profileImg) {
+                args.put("profile_img", "true");
+            }
+
             response = reddit.execute(reddit.request()
                     .endpoint(Endpoints.MORECHILDREN)
-                    .post(JrawUtils.mapOf(
-                            "children", ids.toString(),
-                            "link_id", ownerId,
-                            "profile_img", profileImg,
-                            "sort", commentSort.name().toLowerCase(),
-                            "api_type", "json"
-                    )).build());
+                    .post(args)
+                    .build());
         } finally {
             morechildrenLock.unlock();
         }
