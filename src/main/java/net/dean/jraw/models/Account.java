@@ -45,6 +45,18 @@ public class Account extends Thing implements Created {
         return data("link_karma", Integer.class);
     }
 
+    /** Gets the user's awarder karma */
+    @JsonProperty
+    public Integer getAwarderKarma() {
+        return data("awarder_karma", Integer.class);
+    }
+
+    /** Gets the user's awardee karma */
+    @JsonProperty
+    public Integer getAwardeeKarma() {
+        return data("awardee_karma", Integer.class);
+    }
+
     /** Checks if this account is said to be over 18 and "willing to view adult content." */
     @JsonProperty(nullable = true)
     public Boolean isOver18() {
