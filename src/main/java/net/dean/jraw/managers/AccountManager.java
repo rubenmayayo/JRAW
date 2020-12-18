@@ -93,7 +93,8 @@ public class AccountManager extends AbstractManager {
                 "spoiler", b.spoiler,
                 "sr", b.subreddit,
                 "then", "comments",
-                "title", b.title
+                "title", b.title,
+                "items", JrawUtils.toJson(b.galleryItems)
         );
 
         if (b.flairId != null && !b.flairId.isEmpty()) {
@@ -106,7 +107,7 @@ public class AccountManager extends AbstractManager {
         if (b.kind == SubmissionKind.SELF) {
             args.put("text", b.selfText);
         } else if (b.kind == SubmissionKind.GALLERY) {
-            args.put("items", JrawUtils.toJson(b.galleryItems));
+            //args.put("items", JrawUtils.toJson(b.galleryItems));
             args.put("kind", "self");
             args.put("show_error_list", "true");
             args.put("submit_type", "subreddit");
