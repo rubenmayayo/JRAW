@@ -107,8 +107,9 @@ public class AccountManager extends AbstractManager {
             args.put("text", b.selfText);
         } else if (b.kind == SubmissionKind.GALLERY) {
             args.put("items", JrawUtils.toJson(b.galleryItems));
-            args.remove("kind");
+            args.put("kind", "self");
             args.put("show_error_list", "true");
+            args.put("submit_type", "subreddit");
         } else {
             args.put("url", b.url.toExternalForm());
         }
