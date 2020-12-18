@@ -136,7 +136,8 @@ public class AccountManager extends AbstractManager {
         }
 
         RestResponse response = genericPost(reddit.request()
-                .endpoint(b.kind == SubmissionKind.GALLERY ? Endpoints.SUBMIT_GALLERY_POST : Endpoints.SUBMIT)
+                //.endpoint(b.kind == SubmissionKind.GALLERY ? Endpoints.SUBMIT_GALLERY_POST : Endpoints.SUBMIT)
+                .path("/api/submit_gallery_post.json?raw_json=1")
                 .post(args)
                 .build());
 
