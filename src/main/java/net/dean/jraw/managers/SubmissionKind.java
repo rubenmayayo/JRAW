@@ -8,5 +8,6 @@ public enum SubmissionKind {
     LINK,
     IMAGE,
     VIDEO,
-    VIDEOGIF
+    VIDEOGIF,
+    GALLERY
 }

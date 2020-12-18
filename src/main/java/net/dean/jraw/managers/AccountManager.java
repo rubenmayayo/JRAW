@@ -1,5 +1,7 @@
 package net.dean.jraw.managers;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.ImmutableList;
 import net.dean.jraw.AccountPreferencesEditor;
@@ -78,7 +80,7 @@ public class AccountManager extends AbstractManager {
      * @throws NetworkException If the request was not successful
      * @throws ApiException If the API returned an error
      */
-    @EndpointImplementation(Endpoints.SUBMIT)
+    @EndpointImplementation({Endpoints.SUBMIT, Endpoints.SUBMIT_GALLERY_POST})
     public RestResponse submitRaw(SubmissionBuilder b, Captcha captcha, String captchaAttempt) throws NetworkException, ApiException {
         Map<String, String> args = JrawUtils.mapOf(
                 "api_type", "json",
@@ -103,6 +105,8 @@ public class AccountManager extends AbstractManager {
 
         if (b.kind == SubmissionKind.SELF) {
             args.put("text", b.selfText);
+        } else if (b.kind == SubmissionKind.GALLERY) {
+            args.put("items", JrawUtils.toJson(b.galleryItems));
         } else {
             args.put("url", b.url.toExternalForm());
         }
@@ -130,7 +134,7 @@ public class AccountManager extends AbstractManager {
         }
 
         RestResponse response = genericPost(reddit.request()
-                .endpoint(Endpoints.SUBMIT)
+                .endpoint(b.kind == SubmissionKind.GALLERY ? Endpoints.SUBMIT_GALLERY_POST : Endpoints.SUBMIT)
                 .post(args)
                 .build());
 
@@ -651,6 +655,7 @@ public class AccountManager extends AbstractManager {
         private String crosspostFullName;
         private URL videoPosterUrl;
         private boolean validateOnSubmit;
+        private List<GalleryItem> galleryItems;
 
         /**
          * Instantiates a new SubmissionBuilder that will result in a self post.
@@ -693,6 +698,21 @@ public class AccountManager extends AbstractManager {
             this.subreddit = subreddit;
             this.title = title;
             this.videoPosterUrl = videoPosterUrl;
+        }
+
+        /**
+         * Instantiates a new SubmissionBuilder that will result in a gallery post.
+         * @param galleryItems The media id of uploaded images
+         * @param subreddit The subreddit to submit the link to (e.g. "funny", "pics", etc.)
+         * @param title The title of the submission
+         */
+        public SubmissionBuilder(List<GalleryItem> galleryItems, String subreddit, String title, SubmissionKind kind) {
+            this.kind = kind;
+            this.url = null;
+            this.selfText = null;
+            this.galleryItems = galleryItems;
+            this.subreddit = subreddit;
+            this.title = title;
         }
 
         /**
@@ -779,6 +799,15 @@ public class AccountManager extends AbstractManager {
         }
 
         /**
+         * The list of image ids, to be uploaded for a gallery post.
+         * @return This builder
+         */
+        public SubmissionBuilder setGalleryItems(List<GalleryItem> galleryItems) {
+            this.galleryItems = galleryItems;
+            return this;
+        }
+
+        /**
          * For testing purposes of this upcoming change:
          * https://www.reddit.com/r/redditdev/comments/ezz3td/upcoming_api_change_post_apisubmit/
          * @param validateOnSubmit If there should validate on submit
@@ -789,4 +818,17 @@ public class AccountManager extends AbstractManager {
             return this;
         }
     }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class GalleryItem {
+
+        @JsonProperty("caption")
+        public String caption;
+        @JsonProperty("outbound_url")
+        public String outboundUrl;
+        @JsonProperty("media_id")
+        public String mediaId;
+
+    }
+
 }
