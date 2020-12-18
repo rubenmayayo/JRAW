@@ -108,6 +108,7 @@ public class AccountManager extends AbstractManager {
         } else if (b.kind == SubmissionKind.GALLERY) {
             args.put("items", JrawUtils.toJson(b.galleryItems));
             args.remove("kind");
+            args.put("show_error_list", "true");
         } else {
             args.put("url", b.url.toExternalForm());
         }
