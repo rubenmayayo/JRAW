@@ -1,4 +1,4 @@
-<!--- Generated 2020-12-18 at 21:53:47 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
+<!--- Generated 2020-12-18 at 22:31:50 CET. Use `gradle endpoints:update` to update. DO NOT MODIFY DIRECTLY -->
 #Endpoints
 
 This file contains a list of all the endpoints (regardless of if they have been implemented) that can be found at the [official reddit API docs](https://www.reddit.com/dev/api/oauth). To update this file, run `gradle endpoints:update`.
@@ -301,7 +301,7 @@ Method|Endpoint|Implemention
 ##submit
 Method|Endpoint|Implemention
 :----:|--------|------------
-`POST`|[`/api/submit_gallery_post`](https://www.reddit.com/dev/api/oauth#POST_api_submit_gallery_post)|None
+`POST`|[`/api/submit_gallery_post.json`](https://www.reddit.com/dev/api/oauth#POST_api_submit_gallery_post.json)|None
 `GET`|[`/api/v1/{subreddit}/post_requirements`](https://www.reddit.com/dev/api/oauth#GET_api_v1_%7Bsubreddit%7D_post_requirements)|None
 `POST`|[`/api/live/create`](https://www.reddit.com/dev/api/oauth#POST_api_live_create)|[`LiveThreadManager.create(String, boolean, String, String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/LiveThreadManager.html#create(java.lang.String, boolean, java.lang.String, java.lang.String))
 `POST`|[`/api/live/{thread}/update`](https://www.reddit.com/dev/api/oauth#POST_api_live_%7Bthread%7D_update)|[`LiveThreadManager.postUpdate(LiveThread, String)`](https://thatjavanerd.github.io/JRAW/docs/git/net/dean/jraw/managers/LiveThreadManager.html#postUpdate(net.dean.jraw.models.LiveThread, java.lang.String))
