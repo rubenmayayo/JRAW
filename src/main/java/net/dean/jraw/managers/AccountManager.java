@@ -106,15 +106,7 @@ public class AccountManager extends AbstractManager {
         if (b.kind == SubmissionKind.SELF) {
             args.put("text", b.selfText);
         } else if (b.kind == SubmissionKind.GALLERY) {
-            args.remove("extension");
-            args.remove("then");
-            args.remove("save");
             args.put("items", JrawUtils.toJson(b.galleryItems));
-            args.put("kind", "image");
-            args.put("original_content", "false");
-            args.put("show_error_list", "true");
-            args.put("submit_type", "subreddit");
-            args.put("validate_on_submit", "true");
         } else {
             args.put("url", b.url.toExternalForm());
         }
@@ -143,7 +135,6 @@ public class AccountManager extends AbstractManager {
 
         RestResponse response = genericPost(reddit.request()
                 .endpoint(b.kind == SubmissionKind.GALLERY ? Endpoints.SUBMIT_GALLERY_POST : Endpoints.SUBMIT)
-                .path("/api/submit_gallery_post.json?rtj=only&raw_json=1&gilding_detail=1")
                 .post(args)
                 .build());
 
