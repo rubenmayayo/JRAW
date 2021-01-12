@@ -80,7 +80,7 @@ public class AccountManager extends AbstractManager {
      * @throws NetworkException If the request was not successful
      * @throws ApiException If the API returned an error
      */
-    @EndpointImplementation({Endpoints.SUBMIT, Endpoints.SUBMIT_GALLERY_POST})
+    @EndpointImplementation(Endpoints.SUBMIT)
     public RestResponse submitRaw(SubmissionBuilder b, Captcha captcha, String captchaAttempt) throws NetworkException, ApiException {
         Map<String, String> args = JrawUtils.mapOf(
                 "api_type", "json",
@@ -105,8 +105,6 @@ public class AccountManager extends AbstractManager {
 
         if (b.kind == SubmissionKind.SELF) {
             args.put("text", b.selfText);
-        } else if (b.kind == SubmissionKind.GALLERY) {
-            args.put("items", JrawUtils.toJson(b.galleryItems));
         } else {
             args.put("url", b.url.toExternalForm());
         }
@@ -134,12 +132,38 @@ public class AccountManager extends AbstractManager {
         }
 
         RestResponse response = genericPost(reddit.request()
-                .endpoint(b.kind == SubmissionKind.GALLERY ? Endpoints.SUBMIT_GALLERY_POST : Endpoints.SUBMIT)
+                .endpoint(Endpoints.SUBMIT)
                 .post(args)
                 .build());
 
         return response;
 
+    }
+
+
+    /**
+     * Submits a new gallery with a given captcha. Only really needed if the user has less than 10 link karma.
+     *
+     * @param b The SubmissionBuilder to gather data from
+     * @param captcha The Captcha the user is attempting
+     * @param captchaAttempt The user's guess at the captcha
+     * @return A representation of the newly submitted Submission
+     * @throws NetworkException If the request was not successful
+     * @throws ApiException If the API returned an error
+     */
+    @EndpointImplementation(Endpoints.SUBMIT_GALLERY_POST)
+    public Submission submitGallery(SubmissionBuilder b, Captcha captcha, String captchaAttempt) throws NetworkException, ApiException {
+        GalleryCreationRequest galleryRequest = GalleryCreationRequest.create(b);
+        RestResponse response = genericPost(reddit.request()
+                .endpoint(Endpoints.SUBMIT_GALLERY_POST)
+                .post(RequestBody.create(MediaTypes.JSON.type(), JrawUtils.toJson(galleryRequest)))
+                .build());
+
+        String id = response.getJson().get("json").get("data").get("id").asText();
+        if (id.startsWith("t3_")) {
+            id = id.substring(3);
+        }
+        return reddit.getSubmission(id);
     }
 
     /**
@@ -819,15 +843,171 @@ public class AccountManager extends AbstractManager {
         }
     }
 
-    //@JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public static class GalleryCreationRequest {
+
+        public String apiType;
+        public String extension;
+        public String kind;
+        public boolean resubmit;
+        public boolean nsfw;
+        public boolean spoiler;
+        public String subreddit;
+        public String title;
+        public String submitType;
+        public boolean showErrorList;
+        public boolean validateOnSubmit;
+        public List<GalleryItem> items;
+        public boolean saveAfter;
+        public boolean sendRepliesToInbox;
+        public String flairId;
+        public String flairText;
+        public String crosspostFullName;
+
+        public GalleryCreationRequest() {
+
+        }
+
+        public static GalleryCreationRequest create(SubmissionBuilder b) {
+            GalleryCreationRequest gc = new GalleryCreationRequest();
+
+            gc.apiType = "json";
+            gc.extension = "json";
+            gc.kind = "self";
+            gc.resubmit = b.resubmit;
+            gc.sendRepliesToInbox = b.sendRepliesToInbox;
+            gc.nsfw = b.nsfw;
+            gc.spoiler = b.spoiler;
+            gc.subreddit = b.subreddit;
+            gc.title = b.title;
+            gc.submitType = "subreddit";
+            gc.showErrorList = true;
+            gc.validateOnSubmit = b.validateOnSubmit;
+            gc.items = b.galleryItems;
+            gc.saveAfter = b.saveAfter;
+
+            if (b.flairId != null && !b.flairId.isEmpty()) {
+                gc.flairId = b.flairId;
+                if (b.flairText != null && !b.flairText.isEmpty()) {
+                    gc.flairText = b.flairText;
+                }
+            }
+
+            if (b.crosspostFullName != null && !b.crosspostFullName.isEmpty()) {
+                gc.kind = "crosspost";
+                gc.crosspostFullName = b.crosspostFullName;
+            }
+
+            return gc;
+        }
+
+        @JsonProperty("api_type")
+        public String getApiType() {
+            return apiType;
+        }
+
+        @JsonProperty("extension")
+        public String getExtension() {
+            return extension;
+        }
+
+        @JsonProperty("kind")
+        public String getKind() {
+            return kind;
+        }
+
+        @JsonProperty("resubmit")
+        public boolean isResubmit() {
+            return resubmit;
+        }
+
+        @JsonProperty("nsfw")
+        public boolean isNsfw() {
+            return nsfw;
+        }
+
+        @JsonProperty("spoiler")
+        public boolean isSpoiler() {
+            return spoiler;
+        }
+
+        @JsonProperty("sr")
+        public String getSubreddit() {
+            return subreddit;
+        }
+
+        @JsonProperty("title")
+        public String getTitle() {
+            return title;
+        }
+
+        @JsonProperty("submit_type")
+        public String getSubmitType() {
+            return submitType;
+        }
+
+        @JsonProperty("show_error_list")
+        public boolean isShowErrorList() {
+            return showErrorList;
+        }
+
+        @JsonProperty("validate_on_submit")
+        public boolean isValidateOnSubmit() {
+            return validateOnSubmit;
+        }
+
+        @JsonProperty("items")
+        public List<GalleryItem> getItems() {
+            return items;
+        }
+
+        @JsonProperty("save_after")
+        public boolean isSaveAfter() {
+            return saveAfter;
+        }
+
+        @JsonProperty("send_replies")
+        public boolean isSendRepliesToInbox() {
+            return sendRepliesToInbox;
+        }
+
+        @JsonProperty("flair_id")
+        public String getFlairId() {
+            return flairId;
+        }
+
+        @JsonProperty("flair_text")
+        public String getFlairText() {
+            return flairText;
+        }
+
+        @JsonProperty("crosspost_fullname")
+        public String getCrosspostFullName() {
+            return crosspostFullName;
+        }
+    }
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class GalleryItem {
 
-        @JsonProperty("caption")
         public String caption;
-        @JsonProperty("outbound_url")
-        public String outboundUrl;
-        @JsonProperty("media_id")
         public String mediaId;
+        public String outboundUrl;
+
+        @JsonProperty("outbound_url")
+        public String getOutboundUrl() {
+            return outboundUrl;
+        }
+
+        @JsonProperty("caption")
+        public String getCaption() {
+            return caption;
+        }
+
+        @JsonProperty("media_id")
+        public String getMediaId() {
+            return mediaId;
+        }
 
     }
 
