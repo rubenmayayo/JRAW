@@ -122,6 +122,10 @@ public class AccountManager extends AbstractManager {
             args.put("validate_on_submit", "true");
         }
 
+        if (b.draftId != null && !b.draftId.isEmpty()) {
+            args.put("draft_id", b.draftId);
+        }
+
         if (captcha != null) {
             if (captchaAttempt == null) {
                 throw new IllegalArgumentException("Captcha present but the attempt is not");
@@ -680,6 +684,7 @@ public class AccountManager extends AbstractManager {
         private URL videoPosterUrl;
         private boolean validateOnSubmit;
         private List<GalleryItem> galleryItems;
+        private String draftId;
 
         /**
          * Instantiates a new SubmissionBuilder that will result in a self post.
@@ -828,6 +833,15 @@ public class AccountManager extends AbstractManager {
          */
         public SubmissionBuilder setGalleryItems(List<GalleryItem> galleryItems) {
             this.galleryItems = galleryItems;
+            return this;
+        }
+
+        /**
+         * The draft id if submitting a post from drafts.
+         * @return This builder
+         */
+        public SubmissionBuilder setDraftId(String draftId) {
+            this.draftId = draftId;
             return this;
         }
 
