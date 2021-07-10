@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.Proxy;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.SocketFactory;
 
 /**
  * Provides a concrete HttpAdapter implementation using Square's OkHttp
@@ -26,13 +30,25 @@ public final class OkHttpAdapter implements HttpAdapter<OkHttpClient> {
         TimeUnit unit = TimeUnit.SECONDS;
         int timeout = 10;
 
-        ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
-                .tlsVersions(TlsVersion.TLS_1_2)
-                .cipherSuites(
-                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-                        CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256)
+        ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
                 .build();
+
+        try {
+            SocketFactory socketFactory = new TLSSocketFactory();
+
+            return new OkHttpClient.Builder()
+                    .socketFactory(socketFactory)
+                    .connectionSpecs(Collections.singletonList(spec))
+                    .connectTimeout(timeout, unit)
+                    .readTimeout(timeout, unit)
+                    .writeTimeout(timeout, unit)
+                    .build();
+
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         return new OkHttpClient.Builder()
                 .connectionSpecs(Collections.singletonList(spec))
