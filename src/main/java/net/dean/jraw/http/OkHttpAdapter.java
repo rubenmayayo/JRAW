@@ -8,6 +8,7 @@ import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.Proxy;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ public final class OkHttpAdapter implements HttpAdapter<OkHttpClient> {
         TimeUnit unit = TimeUnit.SECONDS;
         int timeout = 10;
         return new OkHttpClient.Builder()
+                .connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.COMPATIBLE_TLS))
                 .connectTimeout(timeout, unit)
                 .readTimeout(timeout, unit)
                 .writeTimeout(timeout, unit)
