@@ -2,6 +2,7 @@ package net.dean.jraw.http;
 
 import okhttp3.*;
 import okio.BufferedSink;
+import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.net.CookieManager;
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.SocketFactory;
+import javax.net.ssl.SSLContext;
 
 /**
  * Provides a concrete HttpAdapter implementation using Square's OkHttp
@@ -30,37 +32,37 @@ public final class OkHttpAdapter implements HttpAdapter<OkHttpClient> {
         TimeUnit unit = TimeUnit.SECONDS;
         int timeout = 10;
 
-        try {
-            SocketFactory socketFactory = new TLSSocketFactory();
-
-            final ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
-                    .tlsVersions(TlsVersion.TLS_1_2)
-                    .build();
-
-            final List<ConnectionSpec> specs = new ArrayList<>();
-            specs.add(spec);
-            specs.add(ConnectionSpec.COMPATIBLE_TLS);
-            specs.add(ConnectionSpec.CLEARTEXT);
-
-            return new OkHttpClient.Builder()
-                    .socketFactory(socketFactory)
-                    .connectionSpecs(specs)
-                    .connectTimeout(timeout, unit)
-                    .readTimeout(timeout, unit)
-                    .writeTimeout(timeout, unit)
-                    .build();
-
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        return new OkHttpClient.Builder()
+        OkHttpClient.Builder client = new OkHttpClient.Builder()
                 .connectTimeout(timeout, unit)
                 .readTimeout(timeout, unit)
-                .writeTimeout(timeout, unit)
-                .build();
+                .writeTimeout(timeout, unit);
+
+        return enableTls12(client).build();
+
+    }
+
+    public static OkHttpClient.Builder enableTls12(OkHttpClient.Builder client) {
+
+            try {
+                SSLContext sc = SSLContext.getInstance("TLSv1.2");
+                sc.init(null, null, null);
+                client.sslSocketFactory(new Tls12SocketFactory(sc.getSocketFactory()));
+
+                ConnectionSpec cs = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+                        .tlsVersions(TlsVersion.TLS_1_2)
+                        .build();
+
+                List<ConnectionSpec> specs = new ArrayList<>();
+                specs.add(cs);
+                specs.add(ConnectionSpec.COMPATIBLE_TLS);
+                specs.add(ConnectionSpec.CLEARTEXT);
+
+                client.connectionSpecs(specs);
+            } catch (Exception exc) {
+                //Log.e("OkHttpTLSCompat", "Error while setting TLS 1.2", exc);
+            }
+
+        return client;
     }
 
     private OkHttpClient http;
