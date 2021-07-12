@@ -30,15 +30,21 @@ public final class OkHttpAdapter implements HttpAdapter<OkHttpClient> {
         TimeUnit unit = TimeUnit.SECONDS;
         int timeout = 10;
 
-        ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
-                .build();
-
         try {
             SocketFactory socketFactory = new TLSSocketFactory();
 
+            final ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+                    .tlsVersions(TlsVersion.TLS_1_2)
+                    .build();
+
+            final List<ConnectionSpec> specs = new ArrayList<>();
+            specs.add(spec);
+            specs.add(ConnectionSpec.COMPATIBLE_TLS);
+            specs.add(ConnectionSpec.CLEARTEXT);
+
             return new OkHttpClient.Builder()
                     .socketFactory(socketFactory)
-                    .connectionSpecs(Collections.singletonList(spec))
+                    .connectionSpecs(specs)
                     .connectTimeout(timeout, unit)
                     .readTimeout(timeout, unit)
                     .writeTimeout(timeout, unit)
@@ -51,7 +57,6 @@ public final class OkHttpAdapter implements HttpAdapter<OkHttpClient> {
         }
 
         return new OkHttpClient.Builder()
-                .connectionSpecs(Collections.singletonList(spec))
                 .connectTimeout(timeout, unit)
                 .readTimeout(timeout, unit)
                 .writeTimeout(timeout, unit)
